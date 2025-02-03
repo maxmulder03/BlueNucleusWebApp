@@ -1,21 +1,14 @@
-FROM node:18-alpine
+FROM node:lts-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json .
 
 RUN npm install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 5173
 
-FROM nginx:1.25.1
+CMD ["npm", "run", "dev", "--", "--host"]
 
-COPY .docker/nginx.conf /etc/nginx/nginx.conf
-
-COPY --from=build /app/build /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
