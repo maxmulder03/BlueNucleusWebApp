@@ -27,9 +27,18 @@
   grid-template-columns: 1fr 3fr 1fr;
   border-bottom: 0.5px solid var(--primary-border);
   align-items: center;
-  align-self: start; 
   text-align: left; 
   padding: 10pt 0 5pt 0;
+}
+
+.wiki-content-description.two-columns {
+  grid-template-columns: 1fr 3fr;
+  justify-items: center;
+  gap: 10px;
+}
+
+.wiki-content-description.three-columns {
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 .wiki-content-description > :nth-child(2) {
@@ -62,8 +71,16 @@
 
 .wiki-filter-section-container {
   display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  justify-items: center;
 }
 
+.wiki-filter-section-container > :nth-child(2) {
+  text-align: left;
+  justify-self: start;
+  margin-left: 6vw;
+}
 
 .wiki-filter-section-container:first-child {
   border-top: 0.5px solid var(--primary-border);
@@ -78,15 +95,15 @@
 
 .wiki-type-badge {
   display: inline-block;
-  width: 'fit-content';
+  width: fit-content;
   padding: 1.5pt 2.5pt 2pt 2.5pt; /* TODO: Hacky vertical centering of text in border */
   font-family: 'Roboto Mono', comic-sans, sans-serif;
-  font-size: 10pt;
+  font-size: clamp(1vw, 10pt, 2vw);
   border-radius: 2pt;
   border: 0.2px solid var(--primary-border);
 }
 
 .publish-date {
   font-family: 'Roboto Mono', comic-sans, sans-serif;
-  font-size: 12pt;
+  font-size: clamp(1vw, 12pt, 2vw);
 }

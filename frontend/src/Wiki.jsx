@@ -23,7 +23,7 @@ function Wiki() {
       <h1> Blue Nucleus / <span className="h1-subpage"> wiki </span> </h1>
       <div className="wiki-container">
         <div className="wiki-nav-container">
-          <div className="wiki-content-description">
+          <div className="wiki-content-description two-columns">
             <div> FILTER </div>
             <div> CLEAR FILTERS </div>
           </div>
@@ -37,7 +37,7 @@ function Wiki() {
           </ul>
         </div>
         <div className="wiki-content-container">
-          <div className="wiki-content-description">
+          <div className="wiki-content-description three-columns">
             <div> DATE </div>
             <div> NAME </div>
             <div> TYPE </div>
