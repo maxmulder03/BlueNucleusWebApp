@@ -20,6 +20,7 @@
 .wiki-content-container {
   display: grid;
   width: 100%;
+  padding-left: 5pt;
 }
 
 .wiki-content-description {
@@ -101,6 +102,10 @@
   font-size: clamp(1vw, 10pt, 2vw);
   border-radius: 2pt;
   border: 0.2px solid var(--primary-border);
+}
+
+.clear-filters {
+  white-space: nowrap;
 }
 
 .publish-date {

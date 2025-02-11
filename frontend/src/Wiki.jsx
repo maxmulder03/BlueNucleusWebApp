@@ -25,7 +25,7 @@ function Wiki() {
         <div className="wiki-nav-container">
           <div className="wiki-content-description two-columns">
             <div> FILTER </div>
-            <div> CLEAR FILTERS </div>
+            <div className="clear-filters"> CLEAR FILTERS </div>
           </div>
           <ul>
             {Object.values(WikiType).map((typeName, idx) => (

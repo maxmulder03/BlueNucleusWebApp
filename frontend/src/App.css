@@ -24,7 +24,7 @@
 
 body {
   background: var(--primary-background);
-  font-size: clamp(1vw, 14pt, 2vw);
+  font-size: clamp(10px, 1.75vw, 18pt);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -42,7 +42,7 @@ body {
 }
 
 h1 {
-  margin: 50pt 0 0 0;
+  margin: clamp(2vh, 5vw, 50pt) 0 0 0;
   font-size: clamp(8vw, 100pt, 9vw);
   font-weight: 800;
   font-family: 'Inter', sans-serif;
