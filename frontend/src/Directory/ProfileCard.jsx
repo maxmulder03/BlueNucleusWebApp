@@ -38,7 +38,14 @@ function ProfileCard({ userProps }) {
       >
         <h3>{userProps.firstName} {userProps.lastName}</h3>
         <p style={{ fontSize: "10pt" }}>{userProps.email}</p>
-        <a href={`https://github.com/${userProps.githubUsername}`} style={{ fontSize: "10pt" }}>{userProps.githubUsername}</a>
+
+        <a
+          href={`https://github.com/${userProps.githubUsername}`}
+          className="no-underline font-bold text-[--primary-color] tx-xs hover:text-[--primary-color]"
+        >
+          {userProps.githubUsername}
+        </a>
+
         <p> Admin: {userProps.isAdmin ? "Yes" : "No"}</p>
       </div>
     </>

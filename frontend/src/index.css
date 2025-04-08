@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+@layer components {
+  .md-heading {
+    @apply text-6xl pt-4 pb-2;
+    color: var(--navy);
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .md-subheading {
+     color: var(--navy);
+  }
+
+  .md {
+     text-align: left;
+  }
+}
+
 :root { 
   --primary-background: #f3f6f8;
   --primary-darker-background: #c2b8ac;

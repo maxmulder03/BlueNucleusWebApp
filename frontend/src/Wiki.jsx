@@ -30,7 +30,9 @@ function Wiki() {
           </div>
           <ul>
             {Object.values(WikiType).map((typeName, idx) => (
-              <li key={idx} className="wiki-filter-section-container">
+              <li
+                key={idx}
+                className="m-0 p-0 list-none wiki-filter-section-container">
                 <input type="checkbox" className="wiki-filter-checkbox" />
                 <label> {typeName} </label>
               </li>
@@ -45,7 +47,9 @@ function Wiki() {
           </div>
           <ul>
             {items.map((item, idx) => (
-              <li key={idx} className="wiki-list-item-container">
+              <li
+                key={idx}
+                className="m-0 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left">
                 <div className="publish-date"> {item.publishDate} </div>
                 <Link to={`/wikis/${item.title}`}>
                   {item.title}

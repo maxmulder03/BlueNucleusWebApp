@@ -7,32 +7,6 @@ h1 {
   letter-spacing: -0.05em;
 }
 
-h2 {
-  padding-left: 10pt;
-  margin-top: 10pt;
-  margin-bottom: 2pt;
-}
-
-li, ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-a {
-  color: var(--primary-text);
-  font-style: bold;
-  font-size: 20pt;
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--primary-text);
-}
-
-.app-header-container {
-}
-
 .app-header-link {
   margin: 0 1pt;
   padding: 5pt 5pt 6pt 5pt;
