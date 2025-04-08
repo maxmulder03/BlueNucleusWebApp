@@ -16,6 +16,7 @@ function SignIn() {
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          localStorage.setItem('uid', user.uid)
           navigate("/")
           console.log(user);
         });

@@ -1,13 +1,22 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./OnboardingList.css";
 import ProgressWheel from "./ProgressWheel.jsx";
 
-function OnboardingCell({ text }) {
+import { returnTaskCategoryGroups } from './helper_functions/task_category.js'
+import { 
+  postUserTask, putUserTask, getUserTask 
+} from "./network/usertasks.js"
+import Collapsable from "./components/Collapsable.jsx";
 
-  const [isComplete, setIsComplete] = useState(false)
+function OnboardingCell({ task, onClick }) {
+
+  const [isComplete, setIsComplete] = useState(task?.completed ?? false)
 
   const handleButtonClick = () => {
+    const userid = localStorage.getItem('uid')
+    if(!userid) return console.log('no-user-id found')
     setIsComplete((prev) => !prev);
+    onClick(task, !isComplete ? 1 : 0)
   }
 
   return (
@@ -18,65 +27,122 @@ function OnboardingCell({ text }) {
       >
         {isComplete ? "✔" : ""}
       </button>
-      <span>{text}</span>
+      <Collapsable title={task?.taskTitle} description={task?.description} />
     </td>
   );
 }
 
 function OnboardingList() {
+  const [onboardingTasks, setOnBoardingTasks] = useState([])
+  const [AssignedUserTasks, setAssignedUserTasks] = useState([])
+  const [userTask, setUserTask] = useState(null)
+  const [refreshTrigger, setRefreshTrigger] = useState(0)
 
-  const todos = [
-    "Verify your information is correct on the profile page",
-    "Schedule a time to get your picture taken with Brock",
-    "Schedule 1 on 1 meeting with Jonathan",
-  ];
+  useEffect(()=>{console.log('fetching...', refreshTrigger)
+    getUserTask(
+      localStorage.getItem('uid'),
+      (res)=>{console.log('res', res)
+        const groupT = returnTaskCategoryGroups(res.data)
+        setUserTask(res)
+        setAssignedUserTasks(res?.assignedUserTasks ?? [])
+        setOnBoardingTasks(groupT)
+      },
+      (error)=>console.log('getDetailUserTask Error', error)
+    )
+  }, [refreshTrigger])
 
-  const todos1 = [
-    "Complete Git course & upload certificate below.",
-    "Read internal CI/CD documentation & answers the following questions...",
-  ];
+  const onSubmit = (data, status) => {console.log('AssignedUserTasks before', AssignedUserTasks, userTask)
+    // check if user has any assigned tasks 
+    // and make a put request else make a POST request
+    
+    if(userTask){
+      const findTask = AssignedUserTasks.find(t=>t.taskid === data.taskId)
+      if(findTask){
+        AssignedUserTasks.map(item=>{
+          if(item.taskid === data.taskId) item['completed'] = status
+          return item
+        })
+        console.log('In find',AssignedUserTasks)
+        const json = {
+          id: userTask.id,
+          taskids: JSON.stringify(AssignedUserTasks),
+          userid: userTask.userid,
+        }
+        putUserTask(
+          json,
+          (data)=>{
+            console.log('put-user-task-success',data)
+            setRefreshTrigger(refreshTrigger+1)
+          },
+          (error)=>console.log('put-user-task-error', error)
+        )
+      }else{
+        const json = {
+          id: userTask.id,
+          taskids: JSON.stringify([...AssignedUserTasks, {taskid: data.taskId, completed: status, is_active: data.taskIsActive}]),
+          userid: userTask.userid,
+        }
+        putUserTask(
+          json,
+          (data)=>{
+            console.log('post-user-task-success',data)
+            setRefreshTrigger(refreshTrigger+1)
+          },
+          (error)=>console.log('post-user-task-error', error)
+        )
+      }
+    }else{
+      const userid = localStorage.getItem('uid')
+      if(!userid) return console.log('no-user-id found')
+      const json = {
+        taskids: JSON.stringify([{taskid: data.taskId, completed: status, is_active: data.taskIsActive}]),
+        userid: localStorage.getItem('uid')
+      }
+      postUserTask(
+        json,
+        (data)=>{
+          console.log('post-user-task-success',data)
+          setRefreshTrigger(refreshTrigger+1)
+        },
+        (error)=>console.log('post-user-task-error', error)
+      )
+    }
+    
+  }
 
-  const todos2 = [
-    "Merge a Pull Request that resolves one of this WebApp's Github Issues",
-  ];
+  const onboardList = onboardingTasks.length === 0 ? <></> : onboardingTasks.map((item, index)=>{
+    return (
+      <React.Fragment key={index}>
+        {
+          item.status && (
+            <div className="onboarding-section-title">
+              <h2> {item.name} </h2>
+              
+              <table>
+                <tbody>
+                {item.data.map((todo, ind) => {
+                  return (
+                    <tr key={ind}>
+                      <OnboardingCell task={todo} onClick={onSubmit} />
+                  </tr>
+                  )
+                })}
+                </tbody>
+              </table>
+            </div>
+          )
+        }
+      </React.Fragment>
+    )
+  })
 
   return (
     <>
       <h1> Onboarding List </h1>
-      <div className="onboarding-section-title">
-        <h2> House Cleaning </h2>
-        <table>
-          {todos.map((todo, index) => (
-            <tr key={index}>
-              <OnboardingCell text={todo} />
-            </tr>
-          ))}
-        </table>
-      </div>
-
-      <div className="onboarding-section-title">
-        <h2> Technical Learning </h2>
-        <table>
-          {todos1.map((todo, index) => (
-            <tr key={index}>
-              <OnboardingCell text={todo} />
-            </tr>
-          ))}
-        </table>
-      </div>
-
-      <div className="onboarding-section-title">
-        <h2> Code Changes </h2>
-        <table>
-          {todos2.map((todo, index) => (
-            <tr key={index}>
-              <OnboardingCell text={todo} />
-            </tr>
-          ))}
-        </table>
-      </div>
+      {onboardList}
     </>
   );
 }
 
 export default OnboardingList;
+
