@@ -41,7 +41,7 @@ function App() {
             <Route path="/wiki" element={<Wiki />} />
             <Route path="/directory" element={<Directory />} />
             <Route path="/dashboard" element={<EmployeeDashboard />} />
-            <Route path="/wikis/:title" element={<WikiArticlePage />} />
+            <Route path="/wikis/:wikiType/:wikiArticleName" element={<WikiArticlePage />} />
           </Routes>
         </QueryClientProvider>
       </BrowserRouter>

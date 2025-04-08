@@ -7,10 +7,12 @@ function Wiki() {
     BLOG: "Blog",
     VIDEO: "Video",
     PROJECT: "Project",
-    TUTORIAL: "Tutorial"
+    TUTORIAL: "Tutorial",
+    ONBOARDING: "Onboarding",
   });
 
   const items = [
+    { publishDate: "2025.01.01", title: "New Hire Onboarding", type: WikiType.ONBOARDING },
     { publishDate: "2025.01.01", title: "React Fundamentals", type: WikiType.BLOG },
     { publishDate: "2025.01.02", title: "Git Good With Github", type: WikiType.TUTORIAL },
     { publishDate: "2025.01.03", title: "Recommended Reading", type: WikiType.BLOG },
@@ -51,7 +53,7 @@ function Wiki() {
                 key={idx}
                 className="m-0 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left">
                 <div className="publish-date"> {item.publishDate} </div>
-                <Link to={`/wikis/${item.title}`}>
+                <Link to={`/wikis/${item.type.toLowerCase()}/${item.title}`}>
                   {item.title}
                 </Link>
                 <div><div className="wiki-type-badge"> {item.type.toUpperCase()} </div></div>

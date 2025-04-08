@@ -1,10 +1,45 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dracula as codeTheme } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import markdownContent from './markdownTest.md?raw'; // TODO: Update to fetch backend 
 
 function WikiArticlePage() {
+
+  const { wikiType, wikiArticleName } = useParams();
+  const [markdownContent, setMarkdownContent] = React.useState('');
+
+  const baseUrl = 'https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main';
+
+  useEffect(() => {
+    fetch(baseUrl + `/${wikiType}/${encodeURIComponent(wikiArticleName)}.md`)
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Failed to fetch wiki article');
+        }
+      })
+      .then(data => {
+        setMarkdownContent(data);
+      })
+      .catch(error => {
+        fetchBackupArticle();
+        console.warn(error);
+      });
+  }, [wikiArticleName, wikiType]);
+
+  const fetchBackupArticle = async () => {
+    fetch('https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main/blogs/test.md')
+      .then(response => response.text())
+      .then(data => {
+        setMarkdownContent(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
