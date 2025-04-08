@@ -9,7 +9,7 @@ import Wiki from './Wiki.jsx'
 import Directory from './Directory/Directory.jsx'
 import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import WikiArticlePage from './WikiArticlePage.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +41,7 @@ function App() {
             <Route path="/wiki" element={<Wiki />} />
             <Route path="/directory" element={<Directory />} />
             <Route path="/dashboard" element={<EmployeeDashboard />} />
+            <Route path="/wikis/:title" element={<WikiArticlePage />} />
           </Routes>
         </QueryClientProvider>
       </BrowserRouter>

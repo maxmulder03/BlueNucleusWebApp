@@ -1,4 +1,5 @@
 import "./Wiki.css"
+import { Link } from "react-router-dom";
 
 function Wiki() {
 
@@ -46,7 +47,9 @@ function Wiki() {
             {items.map((item, idx) => (
               <li key={idx} className="wiki-list-item-container">
                 <div className="publish-date"> {item.publishDate} </div>
-                <a href={`/wiki/${item.title}`}> {item.title} </a>
+                <Link to={`/wikis/${item.title}`}>
+                  {item.title}
+                </Link>
                 <div><div className="wiki-type-badge"> {item.type.toUpperCase()} </div></div>
               </li>
             ))}
