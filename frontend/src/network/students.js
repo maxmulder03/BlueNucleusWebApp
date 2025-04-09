@@ -1,10 +1,16 @@
-import { geturl, getsingleurl, posturl, puturl, deleteurl } from "./url";
+import {
+  getUrl,
+  getsingleurl,
+  buildPostRequest,
+  buildPutRequest,
+  buildDeleteRequest,
+} from "./url";
 
 const route = "students";
 
 export const getStudentByFirstName = async (name, resFunc, errFunc) => {
   try {
-    const url = geturl(route);
+    const url = getUrl(route);
     const new_url = `${url}/firstname?firstname=${name}`;
     const response = await fetch(new_url);
     const data = await response.json();
@@ -29,7 +35,7 @@ export const getStudent = async (id, resFunc, errFunc) => {
 
 export const getStudents = async (resFunc, errFunc) => {
   try {
-    const response = await fetch(geturl(route));
+    const response = await fetch(getUrl(route));
     const data = await response.json();
     if (data?.status && data?.status === 404) return errFunc(data.message);
     return resFunc(data);
@@ -40,7 +46,7 @@ export const getStudents = async (resFunc, errFunc) => {
 
 export const postStudent = async (body, resFunc, errFunc) => {
   try {
-    const response = await fetch(...posturl(route, body));
+    const response = await fetch(...buildPostRequest(route, body));
     const data = await response.json();
     if (response.ok) return resFunc({ status: true });
     return errFunc({ status: false, message: data.message });
@@ -51,7 +57,7 @@ export const postStudent = async (body, resFunc, errFunc) => {
 
 export const putStudent = async (body, resFunc, errFunc) => {
   try {
-    const response = await fetch(...puturl(route, body));
+    const response = await fetch(...buildPutRequest(route, body));
     const data = await response.json();
     if (response.ok) return resFunc({ status: true });
     return errFunc({ status: false, message: data.message });
@@ -62,7 +68,7 @@ export const putStudent = async (body, resFunc, errFunc) => {
 
 export const deleteStudent = async (id, resFunc, errFunc) => {
   try {
-    const response = await fetch(...deleteurl(route, id));
+    const response = await fetch(...buildDeleteRequest(route, id));
     const data = await response.json();
     if (response.ok) return resFunc({ status: true });
     return errFunc({ status: false, message: data.message });
