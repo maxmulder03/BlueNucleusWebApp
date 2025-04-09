@@ -1,7 +1,7 @@
-import './EmployeeDashboard.css';
-import { auth, db } from "./FirebaseApp";
-import { useState, useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import "./EmployeeDashboard.css"
+import { auth, db } from "./FirebaseApp"
+import { useState, useEffect } from "react"
+import { collection, query, where, getDocs } from "firebase/firestore"
 
 function DashboardItem({ title, text }) {
   return (
@@ -14,34 +14,36 @@ function DashboardItem({ title, text }) {
         <p> {text != null ? text.github : "loading"} </p>
       </div>
     </div>
-  );
+  )
 }
 
 function EmployeeDashboard() {
-
-  const [profileInfo, setProfileInfo] = useState([]);
-  const user = auth.currentUser;
+  const [profileInfo, setProfileInfo] = useState([])
+  const user = auth.currentUser
 
   useEffect(() => {
     const fetchProfileInfo = async () => {
-      if (!user) return;
+      if (!user) return
       try {
-        console.log("User:", user);
-        console.log("Hello:", user.email);
-        const userEmail = user.email;
-        const userInfoRef = collection(db, "userInfo");
-        const q = query(userInfoRef, where("email", "==", userEmail));
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc => ({ id: doc.id, ...doc.data() })));
-        setProfileInfo(data[0]);
-        console.log(data[0]);
+        console.log("User:", user)
+        console.log("Hello:", user.email)
+        const userEmail = user.email
+        const userInfoRef = collection(db, "userInfo")
+        const q = query(userInfoRef, where("email", "==", userEmail))
+        const querySnapshot = await getDocs(q)
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        setProfileInfo(data[0])
+        console.log(data[0])
       } catch (e) {
-        console.error("Error Fetching user info:", e);
-        setProfileInfo("Error Fetching UserInfo");
+        console.error("Error Fetching user info:", e)
+        setProfileInfo("Error Fetching UserInfo")
       }
-    };
-    fetchProfileInfo();
-  }, [user]);
+    }
+    fetchProfileInfo()
+  }, [user])
 
   return (
     <div className="dashboard-container">
@@ -54,7 +56,7 @@ function EmployeeDashboard() {
         <DashboardItem title="Other" />
       </div>
     </div>
-  );
+  )
 }
 
-export default EmployeeDashboard;
+export default EmployeeDashboard

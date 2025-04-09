@@ -1,39 +1,40 @@
 import "./Directory.css"
 import ProfileCard from "./ProfileCard.jsx"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 function Directory() {
-
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   // TODO: Implment filter and sort
-  const [filterCriteria, setFilterCriteria] = useState({});
-  const [sortCriteria, setSortCriteria] = useState({ field: null, order: 'asc' });
-  const [filteredUsers, setFilteredUsers] = useState(users);
+  const [filterCriteria, setFilterCriteria] = useState({})
+  const [sortCriteria, setSortCriteria] = useState({
+    field: null,
+    order: "asc",
+  })
+  const [filteredUsers, setFilteredUsers] = useState(users)
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/users/getUsers");
+        const response = await fetch("http://localhost:8080/api/users/getUsers")
         if (!response.ok) {
-          throw new Error("Failed to fetch users");
+          throw new Error("Failed to fetch users")
         }
-        const data = await response.json();
-        setUsers(data);
+        const data = await response.json()
+        setUsers(data)
       } catch (err) {
-        setError(err.message);
+        setError(err.message)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    fetchUsers();
-  }, []);
+    }
+    fetchUsers()
+  }, [])
 
-  const filterUsers = () => {
-  };
+  const filterUsers = () => {}
 
   return (
     <>
@@ -48,4 +49,4 @@ function Directory() {
   )
 }
 
-export default Directory;
+export default Directory

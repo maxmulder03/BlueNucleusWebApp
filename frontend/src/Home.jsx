@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
 import "./App.css"
 
 function NavButton({ location, text, idx }) {
   return (
-    <Link to={`${location}`} className={`NavButtonContainer ${idx}`}>{text}</Link>
-  );
+    <Link to={`${location}`} className={`NavButtonContainer ${idx}`}>
+      {text}
+    </Link>
+  )
 }
 
 function Home() {
@@ -16,12 +18,16 @@ function Home() {
         <NavButton location="/wiki" text="Internal Wiki" idx="two" />
         <NavButton location="/dashboard" text="Student Dashboard" idx="three" />
         <NavButton location="/sign-in" text="Sign In" idx="four" />
-        <NavButton location="/create-account" text="Create Account" idx="five" />
+        <NavButton
+          location="/create-account"
+          text="Create Account"
+          idx="five"
+        />
         <NavButton location="/tmp" text="Admin Dashboard" idx="six" />
         <NavButton location="/directory" text="Directory" idx="seven" />
       </div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home

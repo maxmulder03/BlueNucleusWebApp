@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 
-export default function Collapsable({title, description}) {
+export default function Collapsable({ title, description }) {
   const [collapsed, setcollapsed] = useState(false)
 
   return (
-    <div className='flex-column1'>
-      <div 
-        onClick={()=>setcollapsed(!collapsed)}
-        style={{cursor: 'pointer'}}
+    <div className="flex-column1">
+      <div
+        onClick={() => setcollapsed(!collapsed)}
+        style={{ cursor: "pointer" }}
       >
         {title}
       </div>
