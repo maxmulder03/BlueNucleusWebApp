@@ -1,14 +1,13 @@
 import { useState } from "react";
 import "./CreateAccount.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "./FirebaseApp";
 
 function SignIn() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +34,7 @@ function SignIn() {
       <h1 className="MyTitle">Create An Account</h1>
       <form onSubmit={handleSubmit} className="FormContainer">
         <div className="InputContainer">
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <input
             className="create-account-input"
             type="text"
@@ -45,7 +44,7 @@ function SignIn() {
           />
         </div>
         <div className="InputContainer">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
             className="create-account-input"
             type="password"

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { auth } from "./FirebaseApp";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function CreateAccount({ onAccountCreation }) {
@@ -9,11 +9,7 @@ function CreateAccount({ onAccountCreation }) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [githubUsername, setGithubAccount] = useState("");
-  const [hours, setHours] = useState(""); // TODO: Make hours work correctly
   const [password, setPassword] = useState("");
-  const [accessKey, setAccessKey] = useState("");
-
-  const [errors, setErrors] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,11 +55,9 @@ function CreateAccount({ onAccountCreation }) {
       } else {
         const error = await response.json();
         console.error("Failed to create account in backend: ", error);
-        setErrors(error.message);
       }
     } catch (error) {
       console.error("Error: ", error);
-      setErrors("Error creating account");
     } finally {
       setPassword("");
     }
@@ -74,7 +68,7 @@ function CreateAccount({ onAccountCreation }) {
       <h1 className="MyTitle">Create An Account</h1>
       <form onSubmit={handleSubmit} className="FormContainer">
         <div className="InputContainer">
-          <label>First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             className="create-account-input"
             id="firstName"
@@ -86,7 +80,7 @@ function CreateAccount({ onAccountCreation }) {
         </div>
 
         <div className="InputContainer">
-          <label>Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
             className="create-account-input"
             id="lastName"
@@ -98,7 +92,7 @@ function CreateAccount({ onAccountCreation }) {
         </div>
 
         <div className="InputContainer">
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <input
             className="create-account-input"
             id="email"
@@ -110,7 +104,7 @@ function CreateAccount({ onAccountCreation }) {
         </div>
 
         <div className="InputContainer">
-          <label>Github Account</label>
+          <label htmlFor="githubUsername">Github Username</label>
           <input
             className="create-account-input"
             id="githubUsername"
@@ -122,7 +116,7 @@ function CreateAccount({ onAccountCreation }) {
         </div>
 
         <div className="InputContainer">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
             className="create-account-input"
             type="password"

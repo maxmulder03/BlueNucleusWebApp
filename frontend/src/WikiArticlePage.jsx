@@ -50,7 +50,6 @@ function WikiArticlePage() {
       </h1>
       <div className="prose prose-neutral m-4 mx-auto w-[70%] bg-[var(--primary-background)] rounded-3xl p-8">
         <Markdown
-          children={markdownContent}
           components={{
             h1: ({ ...props }) => <h2 className="md md-heading" {...props} />,
             h2: ({ ...props }) => (
@@ -78,16 +77,17 @@ function WikiArticlePage() {
             ),
             li: ({ ...props }) => <li className="md" {...props} />,
             code(props) {
-              const { children, className, node, ...rest } = props;
+              const { children, className, ...rest } = props;
               const match = /language-(\w+)/.exec(className || "");
               return match ? (
                 <SyntaxHighlighter
                   {...rest}
                   PreTag="div"
-                  children={String(children).replace(/\n$/, "")}
                   language={match[1]}
                   style={codeTheme}
-                />
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
               ) : (
                 <code {...rest} className={className}>
                   {children}
@@ -95,7 +95,9 @@ function WikiArticlePage() {
               );
             },
           }}
-        />
+        >
+          {markdownContent}
+        </Markdown>
       </div>
     </>
   );

@@ -5,12 +5,12 @@ export default function Collapsable({ title, description }) {
 
   return (
     <div className="flex-column1">
-      <div
+      <button
         onClick={() => setcollapsed(!collapsed)}
         style={{ cursor: "pointer" }}
       >
         {title}
-      </div>
+      </button>
       {collapsed && (
         <>
           <div>{description}</div>

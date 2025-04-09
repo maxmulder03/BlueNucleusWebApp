@@ -5,16 +5,6 @@ import { useEffect, useState } from "react";
 
 function Directory() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // TODO: Implment filter and sort
-  const [filterCriteria, setFilterCriteria] = useState({});
-  const [sortCriteria, setSortCriteria] = useState({
-    field: null,
-    order: "asc",
-  });
-  const [filteredUsers, setFilteredUsers] = useState(users);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -28,20 +18,15 @@ function Directory() {
         const data = await response.json();
         setUsers(data);
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.log(err.message);
       }
     };
     fetchUsers();
   }, []);
 
-  const filterUsers = () => {};
-
   return (
     <>
       <h1>Directory</h1>
-
       <div className="directory-grid">
         {users.map((user) => (
           <ProfileCard key={user.firebaseId} userProps={user} />

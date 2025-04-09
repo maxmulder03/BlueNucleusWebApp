@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./OnboardingList.css";
-import ProgressWheel from "./ProgressWheel.jsx";
-
 import { returnTaskCategoryGroups } from "./helper_functions/task_category.js";
 import { postUserTask, putUserTask, getUserTask } from "./network/usertasks.js";
 import Collapsable from "./components/Collapsable.jsx";

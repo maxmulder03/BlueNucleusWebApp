@@ -53,13 +53,16 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
+      ...jsxA11y.configs.recommended.rules,
+      ...prettier.configs.recommended.rules,
 
+      "jsx-a11y/heading-has-content": "off",
+      "jsx-a11y/anchor-has-content": "off",
+      "react/prop-types": "off", // TODO: Remove this rule while migrating typescript
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
       ],
-      ...jsxA11y.configs.recommended.rules,
-      ...prettier.configs.recommended.rules,
 
       "prettier/prettier": [
         "error",
