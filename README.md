@@ -1,5 +1,8 @@
 # BlueNucleusWebApp
 
+Updated read me!!!!!!!!!!
+Another udpate????
+
 ## How This Project was Setup
 
 You don't need to run any of the following commands. This section is here to serve as an introduction to vite & provide some context about this web app.
