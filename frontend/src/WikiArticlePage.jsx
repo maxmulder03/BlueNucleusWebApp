@@ -15,11 +15,8 @@ function WikiArticlePage() {
   useEffect(() => {
     fetch(baseUrl + `/${wikiType}/${encodeURIComponent(wikiArticleName)}.md`)
       .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error('Failed to fetch wiki article');
-        }
+        if (!response.ok) { throw new Error('Failed to fetch wiki article'); }
+        return response.text();
       })
       .then(data => {
         setMarkdownContent(data);
@@ -31,7 +28,7 @@ function WikiArticlePage() {
   }, [wikiArticleName, wikiType]);
 
   const fetchBackupArticle = async () => {
-    fetch('https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main/blogs/test.md')
+    fetch('https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main/fallback.md')
       .then(response => response.text())
       .then(data => {
         setMarkdownContent(data);
