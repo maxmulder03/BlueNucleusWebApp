@@ -20,23 +20,23 @@
 }
 .circle-checkbox.complete:hover {
   background: var(--green);
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .circle-checkbox.complete {
   background: var(--green);
 }
 
-table { 
+table {
   width: 50vw;
-  border: 2px solid var(--primary-border); 
-  border-radius: 10pt; 
+  border: 2px solid var(--primary-border);
+  border-radius: 10pt;
   background: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.9);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
 }
 
 tr:hover {
-  background: var(--light-purple)
+  background: var(--light-purple);
 }
 
 td {

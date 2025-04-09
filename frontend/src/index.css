@@ -5,19 +5,19 @@
     @apply text-6xl pt-4 pb-2;
     color: var(--navy);
     font-weight: 800;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 
   .md-subheading {
-     color: var(--navy);
+    color: var(--navy);
   }
 
   .md {
-     text-align: left;
+    text-align: left;
   }
 }
 
-:root { 
+:root {
   --primary-background: #f3f6f8;
   --primary-darker-background: #c2b8ac;
   --primary-text: #1a1d20;
@@ -38,14 +38,14 @@
   --orange: #ff7901;
   --red: #f87c72;
   --green: #72f88f;
-  --blue: #A2D0FA;
+  --blue: #a2d0fa;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  margin:0pt;
+  margin: 0pt;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

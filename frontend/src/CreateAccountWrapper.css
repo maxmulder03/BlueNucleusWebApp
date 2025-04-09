@@ -5,7 +5,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background: linear-gradient(45deg, #4caf50, #81c784); /* Green gradient for success */
+  background: linear-gradient(
+    45deg,
+    #4caf50,
+    #81c784
+  ); /* Green gradient for success */
   border-radius: 15px;
   padding: 30px 50px;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
