@@ -1,30 +1,30 @@
-import { useState } from "react"
-import { auth } from "./FirebaseApp"
-import { NavLink, useNavigate } from "react-router-dom"
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { useState } from "react";
+import { auth } from "./FirebaseApp";
+import { NavLink, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function CreateAccount({ onAccountCreation }) {
-  const navigate = useNavigate()
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [githubUsername, setGithubAccount] = useState("")
-  const [hours, setHours] = useState("") // TODO: Make hours work correctly
-  const [password, setPassword] = useState("")
-  const [accessKey, setAccessKey] = useState("")
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [githubUsername, setGithubAccount] = useState("");
+  const [hours, setHours] = useState(""); // TODO: Make hours work correctly
+  const [password, setPassword] = useState("");
+  const [accessKey, setAccessKey] = useState("");
 
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
-      )
-      const user = userCredential.user
+      );
+      const user = userCredential.user;
 
       const userPayload = {
         firebaseId: user.uid,
@@ -35,9 +35,9 @@ function CreateAccount({ onAccountCreation }) {
         githubUsername: githubUsername,
         activeStatus: true,
         isAdmin: true,
-      }
+      };
 
-      console.log("User Payload: ", JSON.stringify(userPayload))
+      console.log("User Payload: ", JSON.stringify(userPayload));
 
       const response = await fetch("http://localhost:8080/api/users/create", {
         method: "POST",
@@ -46,28 +46,28 @@ function CreateAccount({ onAccountCreation }) {
         },
         body: JSON.stringify(userPayload),
         credentials: "include",
-      })
+      });
 
       if (response.ok) {
-        const createdUser = await response.json()
-        console.log("Created User: ", createdUser)
-        console.log("onAccountCreation prop: ", onAccountCreation)
-        onAccountCreation()
+        const createdUser = await response.json();
+        console.log("Created User: ", createdUser);
+        console.log("onAccountCreation prop: ", onAccountCreation);
+        onAccountCreation();
         setTimeout(() => {
-          navigate("/sign-in")
-        }, 300000)
+          navigate("/sign-in");
+        }, 300000);
       } else {
-        const error = await response.json()
-        console.error("Failed to create account in backend: ", error)
-        setErrors(error.message)
+        const error = await response.json();
+        console.error("Failed to create account in backend: ", error);
+        setErrors(error.message);
       }
     } catch (error) {
-      console.error("Error: ", error)
-      setErrors("Error creating account")
+      console.error("Error: ", error);
+      setErrors("Error creating account");
     } finally {
-      setPassword("")
+      setPassword("");
     }
-  }
+  };
 
   return (
     <>
@@ -137,7 +137,7 @@ function CreateAccount({ onAccountCreation }) {
         </button>
       </form>
     </>
-  )
+  );
 }
 
-export default CreateAccount
+export default CreateAccount;

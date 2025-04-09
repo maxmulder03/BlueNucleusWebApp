@@ -1,5 +1,5 @@
-import "./Wiki.css"
-import { Link } from "react-router-dom"
+import "./Wiki.css";
+import { Link } from "react-router-dom";
 
 function Wiki() {
   const WikiType = Object.freeze({
@@ -8,7 +8,7 @@ function Wiki() {
     PROJECT: "Project",
     TUTORIAL: "Tutorial",
     ONBOARDING: "Onboarding",
-  })
+  });
 
   const items = [
     {
@@ -46,7 +46,7 @@ function Wiki() {
       title: "The Benefits of Payload",
       type: WikiType.BLOG,
     },
-  ]
+  ];
 
   return (
     <>
@@ -100,7 +100,7 @@ function Wiki() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Wiki
+export default Wiki;

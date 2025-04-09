@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 export default function Collapsable({ title, description }) {
-  const [collapsed, setcollapsed] = useState(false)
+  const [collapsed, setcollapsed] = useState(false);
 
   return (
     <div className="flex-column1">
@@ -17,5 +17,5 @@ export default function Collapsable({ title, description }) {
         </>
       )}
     </div>
-  )
+  );
 }

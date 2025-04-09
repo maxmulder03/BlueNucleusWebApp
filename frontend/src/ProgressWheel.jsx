@@ -9,7 +9,7 @@ function ProgressWheel() {
         <div className="right-side half-circle"></div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProgressWheel
+export default ProgressWheel;

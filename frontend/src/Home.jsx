@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
-import "./App.css"
+import { Link } from "react-router-dom";
+import "./App.css";
 
 function NavButton({ location, text, idx }) {
   return (
     <Link to={`${location}`} className={`NavButtonContainer ${idx}`}>
       {text}
     </Link>
-  )
+  );
 }
 
 function Home() {
@@ -27,7 +27,7 @@ function Home() {
         <NavButton location="/directory" text="Directory" idx="seven" />
       </div>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

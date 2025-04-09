@@ -1,33 +1,33 @@
-import React from "react"
-import { useEffect } from "react"
-import { useParams } from "react-router-dom"
-import Markdown from "react-markdown"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { dracula as codeTheme } from "react-syntax-highlighter/dist/esm/styles/prism"
+import React from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula as codeTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 function WikiArticlePage() {
-  const { wikiType, wikiArticleName } = useParams()
-  const [markdownContent, setMarkdownContent] = React.useState("")
+  const { wikiType, wikiArticleName } = useParams();
+  const [markdownContent, setMarkdownContent] = React.useState("");
 
   const baseUrl =
-    "https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main"
+    "https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main";
 
   useEffect(() => {
     fetch(baseUrl + `/${wikiType}/${encodeURIComponent(wikiArticleName)}.md`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to fetch wiki article")
+          throw new Error("Failed to fetch wiki article");
         }
-        return response.text()
+        return response.text();
       })
       .then((data) => {
-        setMarkdownContent(data)
+        setMarkdownContent(data);
       })
       .catch((error) => {
-        fetchBackupArticle()
-        console.warn(error)
-      })
-  }, [wikiArticleName, wikiType])
+        fetchBackupArticle();
+        console.warn(error);
+      });
+  }, [wikiArticleName, wikiType]);
 
   const fetchBackupArticle = async () => {
     fetch(
@@ -35,12 +35,12 @@ function WikiArticlePage() {
     )
       .then((response) => response.text())
       .then((data) => {
-        setMarkdownContent(data)
+        setMarkdownContent(data);
       })
       .catch((error) => {
-        console.error(error)
-      })
-  }
+        console.error(error);
+      });
+  };
 
   return (
     <>
@@ -78,8 +78,8 @@ function WikiArticlePage() {
             ),
             li: ({ ...props }) => <li className="md" {...props} />,
             code(props) {
-              const { children, className, node, ...rest } = props
-              const match = /language-(\w+)/.exec(className || "")
+              const { children, className, node, ...rest } = props;
+              const match = /language-(\w+)/.exec(className || "");
               return match ? (
                 <SyntaxHighlighter
                   {...rest}
@@ -92,13 +92,13 @@ function WikiArticlePage() {
                 <code {...rest} className={className}>
                   {children}
                 </code>
-              )
+              );
             },
           }}
         />
       </div>
     </>
-  )
+  );
 }
 
-export default WikiArticlePage
+export default WikiArticlePage;

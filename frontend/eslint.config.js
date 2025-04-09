@@ -1,12 +1,12 @@
-import js from "@eslint/js"
-import globals from "globals"
-import react from "eslint-plugin-react"
-import reactHooks from "eslint-plugin-react-hooks"
-import reactRefresh from "eslint-plugin-react-refresh"
-import tsParser from "@typescript-eslint/parser"
-import tsPlugin from "@typescript-eslint/eslint-plugin"
-import jsxA11y from "eslint-plugin-jsx-a11y"
-import prettier from "eslint-plugin-prettier"
+import js from "@eslint/js";
+import globals from "globals";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import tsParser from "@typescript-eslint/parser";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-plugin-prettier";
 
 export default [
   {
@@ -71,4 +71,4 @@ export default [
       "@typescript-eslint/explicit-module-boundary-types": "off",
     },
   },
-]
+];

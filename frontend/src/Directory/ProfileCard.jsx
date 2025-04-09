@@ -1,31 +1,31 @@
-import { useRef } from "react"
-import "./ProfileCard.css"
+import { useRef } from "react";
+import "./ProfileCard.css";
 
 function ProfileCard({ userProps }) {
-  const cardRef = useRef()
+  const cardRef = useRef();
 
   const handleMouseMove = (e) => {
-    const card = cardRef.current
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left + 50 // X position within the card
-    const y = e.clientY - rect.top + 50 // Y position within the card
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-    const rotateX = ((y - centerY) / centerY) * 10
-    const rotateY = ((centerX - x) / centerX) * 10
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left + 50; // X position within the card
+    const y = e.clientY - rect.top + 50; // Y position within the card
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * 10;
+    const rotateY = ((centerX - x) / centerX) * 10;
 
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
-  }
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  };
 
   const handleMouseLeave = () => {
-    const card = cardRef.current
-    card.style.transition = "transform 0.3s ease-out"
-    card.style.transform = `rotateX(0deg) rotateY(0deg)`
+    const card = cardRef.current;
+    card.style.transition = "transform 0.3s ease-out";
+    card.style.transform = `rotateX(0deg) rotateY(0deg)`;
 
     setTimeout(() => {
-      card.style.transform = `rotateX(0deg) rotateY(0deg)` // Reset rotation
-    }, 100)
-  }
+      card.style.transform = `rotateX(0deg) rotateY(0deg)`; // Reset rotation
+    }, 100);
+  };
 
   return (
     <>
@@ -50,7 +50,7 @@ function ProfileCard({ userProps }) {
         <p> Admin: {userProps.isAdmin ? "Yes" : "No"}</p>
       </div>
     </>
-  )
+  );
 }
 
-export default ProfileCard
+export default ProfileCard;
