@@ -5,7 +5,7 @@ import CreateAccountWrapper from "./CreateAccountWrapper.jsx";
 import SignIn from "./SignIn.jsx";
 import OnboardingList from "./OnboardingList.jsx";
 import EmployeeDashboard from "./EmployeeDashboard.jsx";
-import Wiki from "./Wiki.jsx";
+import Wiki from "./Wiki.tsx";
 import Directory from "./Directory/Directory.jsx";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
