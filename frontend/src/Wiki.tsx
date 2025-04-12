@@ -77,9 +77,9 @@ function Wiki() {
         {" "}
         Blue Nucleus / <span className="h1-subpage"> wiki </span>{" "}
       </h1>
-      <div className="wiki-container">
-        <div className="wiki-nav-container">
-          <div className="wiki-content-description">
+      <div className="grid grid-cols-[1fr_3fr] items-start justify-center">
+        <div className="w-full">
+          <div className="grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 border-b-[0.5px] items-center self-start text-left">
             <div> FILTER </div>
             <div> CLEAR FILTERS </div>
           </div>
@@ -91,7 +91,7 @@ function Wiki() {
               >
                 <input
                   type="checkbox"
-                  className="wiki-filter-checkbox"
+                  className="border-[0.5px] border-primary-border rounded-[2pt] w-[10pt] h-[10pt]"
                   checked={activeFilters.includes(folder)}
                   onChange={() => handleFilterChange(folder)}
                 />
@@ -100,23 +100,23 @@ function Wiki() {
             ))}
           </ul>
         </div>
-        <div className="wiki-content-container">
-          <div className="wiki-content-description">
+        <div className="w-full">
+          <div className="wiki-table-titles grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 border-b-[0.5px] items-center self-start text-left">
             <div> DATE </div>
             <div> NAME </div>
-            <div> TYPE </div>
+            <div className="text-center pr-2">TYPE</div>
           </div>
           <ul>
             {filteredItems.map((item, idx) => (
               <li
                 key={idx}
-                className="m-0 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left"
+                className="m-0 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left hover:bg-[var(--purple)]"
               >
-                <div className="publish-date"> {item.publishDate} </div>
+                <div className="font-roboto"> {item.publishDate} </div>
                 <Link to={`/wikis/${item.type.toLowerCase()}/${item.name}`}>
                   {item.name}
                 </Link>
-                <div>
+                <div className="flex items-center justify-center">
                   <div className="wiki-type-badge">
                     {" "}
                     {item.type.toUpperCase()}{" "}
