@@ -50,7 +50,12 @@ function WikiArticlePage() {
       <div className="prose prose-neutral m-4 mx-auto w-[70%] bg-[var(--primary-background)] rounded-3xl p-8">
         <Markdown
           components={{
-            h1: ({ ...props }) => <h2 className="md md-heading" {...props} />,
+            h1: ({ ...props }) => (
+              <>
+                <h2 className="md md-heading" {...props} />{" "}
+                <hr className="border-t-8" />
+              </>
+            ),
             h2: ({ ...props }) => (
               <h3
                 className="md md-subheading pt-8 pb-2 font-bold text-4xl"
@@ -75,6 +80,9 @@ function WikiArticlePage() {
               <ul className="md ml-8 list-disc" {...props} />
             ),
             li: ({ ...props }) => <li className="md" {...props} />,
+            hr: ({ ...props }) => (
+              <hr className="md mb-4 border-t-3" {...props} />
+            ),
             code(props) {
               const { children, className, ...rest } = props;
               const match = /language-(\w+)/.exec(className || "");
