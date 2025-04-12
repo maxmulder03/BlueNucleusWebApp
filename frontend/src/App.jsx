@@ -1,4 +1,3 @@
-import "./fonts.css";
 import "./App.css";
 import Home from "./Home.jsx";
 import CreateAccountWrapper from "./CreateAccountWrapper.jsx";

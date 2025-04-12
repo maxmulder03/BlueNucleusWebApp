@@ -28,6 +28,7 @@ function Wiki() {
       .join(" ");
   };
 
+  // Fetches & formats wiki file metadata from Github
   useEffect(() => {
     const fetchWikis = async () => {
       try {
@@ -48,17 +49,26 @@ function Wiki() {
             const fileName = metadata.pop()?.split(".")[0];
             const folderName = metadata.pop();
             if (fileName && folderName) {
-              setFiles((prev) => [
-                ...prev,
-                {
-                  name: fileName,
-                  type: folderName,
-                },
-              ]);
+              // TODO: Rework dedubplication logic, this isn't great
+              setFiles((prev) =>
+                [
+                  ...prev,
+                  {
+                    name: fileName,
+                    type: folderName,
+                  },
+                ].filter(
+                  (f, i, arr) => arr.findIndex((x) => x.name === f.name) === i,
+                ),
+              );
             }
           } else if (item.type === "tree") {
-            console.log(item);
-            setFolders((prev) => [...prev, item.path]);
+            // TODO: Rework dedubplication logic, this isn't great
+            setFolders((prev) =>
+              [...prev, item.path].filter(
+                (f, i, arr) => arr.findIndex((x) => x === f) === i,
+              ),
+            );
           }
         });
       } catch (error) {
@@ -87,9 +97,11 @@ function Wiki() {
         {" "}
         Blue Nucleus / <span className="h1-subpage"> wiki </span>{" "}
       </h1>
+
+      {/* Filters Section */}
       <div className="grid grid-cols-[1fr_3fr] items-start justify-center">
-        <div className="w-full">
-          <div className="grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 border-b-[0.5px] items-center self-start text-left">
+        <div className="w-[90%]">
+          <div className="grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 items-center self-start text-left">
             <div> FILTER </div>
             <div className="whitespace-nowrap"> CLEAR FILTERS </div>
           </div>
@@ -110,6 +122,8 @@ function Wiki() {
             ))}
           </ul>
         </div>
+
+        {/* Wiki Files */}
         <div className="w-full">
           <div className="wiki-table-titles grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 border-b-[0.5px] items-center self-start text-left">
             <div> DATE </div>
@@ -122,8 +136,14 @@ function Wiki() {
                 key={idx}
                 className="m-0 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left hover:bg-[var(--purple)]"
               >
-                <div className="font-roboto"> {item.publishDate} </div>
-                <Link to={`/wikis/${item.type.toLowerCase()}/${item.name}`}>
+                <div className="font-roboto">
+                  {" "}
+                  {item.publishDate ?? "09.09.2022"}{" "}
+                </div>
+                <Link
+                  className="font-roboto"
+                  to={`/wikis/${item.type.toLowerCase()}/${item.name}`}
+                >
                   {formattedName(item.name)}
                 </Link>
                 <div className="flex items-center justify-center">
