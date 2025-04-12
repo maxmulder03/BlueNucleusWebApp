@@ -45,8 +45,7 @@ function WikiArticlePage() {
   return (
     <>
       <h1>
-        {" "}
-        Blue Nucleus / <span className="h1-subpage"> wiki </span>{" "}
+        Blue Nucleus / <span className="h1-subpage"> wiki </span>
       </h1>
       <div className="prose prose-neutral m-4 mx-auto w-[70%] bg-[var(--primary-background)] rounded-3xl p-8">
         <Markdown

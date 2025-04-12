@@ -94,8 +94,7 @@ function Wiki() {
   return (
     <>
       <h1>
-        {" "}
-        Blue Nucleus / <span className="h1-subpage"> wiki </span>{" "}
+        Blue Nucleus / <span className="h1-subpage"> wiki </span>
       </h1>
 
       {/* Filters Section */}
@@ -137,8 +136,7 @@ function Wiki() {
                 className="m-0 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left hover:bg-[var(--purple)]"
               >
                 <div className="font-roboto">
-                  {" "}
-                  {item.publishDate ?? "09.09.2022"}{" "}
+                  {item.publishDate ?? "09.09.2022"}
                 </div>
                 <Link
                   className="font-roboto"
@@ -148,8 +146,7 @@ function Wiki() {
                 </Link>
                 <div className="flex items-center justify-center">
                   <div className="wiki-type-badge">
-                    {" "}
-                    {item.type.toUpperCase()}{" "}
+                    {item.type.toUpperCase()}
                   </div>
                 </div>
               </li>

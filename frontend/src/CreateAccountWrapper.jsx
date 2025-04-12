@@ -15,8 +15,7 @@ function CreateAccountWrapper() {
       {createAccountSuccessfully ? (
         <div className="success-container">
           <h1 className="success-content">
-            {" "}
-            Account Creation Succeeded!!!!!!!!!!{" "}
+            Account Creation Succeeded!!!!!!!!!!
           </h1>
         </div>
       ) : (
