@@ -21,6 +21,13 @@ function Wiki() {
   const wikiApiUrl =
     "https://api.github.com/repos/maxmulder03/BlueNucleusWiki/git/trees/main?recursive=1";
 
+  const formattedName = (name: string) => {
+    return name
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   useEffect(() => {
     const fetchWikis = async () => {
       try {
@@ -43,7 +50,10 @@ function Wiki() {
             if (fileName && folderName) {
               setFiles((prev) => [
                 ...prev,
-                { name: fileName, type: folderName },
+                {
+                  name: fileName,
+                  type: folderName,
+                },
               ]);
             }
           } else if (item.type === "tree") {
@@ -81,7 +91,7 @@ function Wiki() {
         <div className="w-full">
           <div className="grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 border-b-[0.5px] items-center self-start text-left">
             <div> FILTER </div>
-            <div> CLEAR FILTERS </div>
+            <div className="whitespace-nowrap"> CLEAR FILTERS </div>
           </div>
           <ul>
             {folders.map((folder, idx) => (
@@ -114,7 +124,7 @@ function Wiki() {
               >
                 <div className="font-roboto"> {item.publishDate} </div>
                 <Link to={`/wikis/${item.type.toLowerCase()}/${item.name}`}>
-                  {item.name}
+                  {formattedName(item.name)}
                 </Link>
                 <div className="flex items-center justify-center">
                   <div className="wiki-type-badge">
