@@ -1,4 +1,3 @@
-import "./Directory.css";
 import ProfileCard from "./ProfileCard.jsx";
 
 import { useEffect, useState } from "react";

@@ -1,4 +1,3 @@
-import "./EmployeeDashboard.css";
 import { auth, db } from "./FirebaseApp";
 import { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";

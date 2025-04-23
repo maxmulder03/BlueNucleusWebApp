@@ -1,4 +1,3 @@
-import "./App.css";
 import Home from "./Home";
 import CreateAccountWrapper from "./CreateAccountWrapper";
 import SignIn from "./SignIn";
@@ -21,23 +20,43 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <>
+    <div className="m-2">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <header className="app-header-container">
-            <NavLink to="/" className="app-header-link">
+          <header
+            box-="square "
+            className="flex items-end justify-end p-6 mt-6"
+          >
+            <h1 className="self-start mr-auto"> Blue Nucleus </h1>
+            <NavLink to="/" is-="badge" className="ml-2 pt-2 pb-2 items-center">
               HOME
             </NavLink>
-            <NavLink to="/wiki" className="app-header-link">
+            <NavLink
+              to="/wiki"
+              is-="badge"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
               WIKI
             </NavLink>
-            <NavLink to="/directory" className="app-header-link">
+            <NavLink
+              to="/directory"
+              is-="badge"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
               DIRECTORY
             </NavLink>
-            <NavLink to="/dashboard" className="app-header-link">
+            <NavLink
+              to="/dashboard"
+              is-="badge"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
               DASHBOARD
             </NavLink>
-            <NavLink to="/onboarding" className="app-header-link">
+            <NavLink
+              to="/onboarding"
+              is-="badge"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
               ONBOARDING
             </NavLink>
           </header>
@@ -56,7 +75,7 @@ function App() {
           </Routes>
         </QueryClientProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

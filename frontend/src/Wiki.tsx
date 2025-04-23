@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./Wiki.css";
 import { Link } from "react-router-dom";
 
 function Wiki() {
