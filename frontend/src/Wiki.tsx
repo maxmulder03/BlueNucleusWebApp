@@ -17,6 +17,20 @@ function Wiki() {
   const [folders, setFolders] = useState<string[]>([]);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
+  const folderColors = [
+    "yellow",
+    "lavender",
+    "green",
+    "blue",
+    "rosewater",
+    "mauve",
+    "flamingo",
+    "sky",
+    "sapphire",
+    "red",
+    "peach",
+  ];
+
   const wikiApiUrl =
     "https://api.github.com/repos/maxmulder03/BlueNucleusWiki/git/trees/main?recursive=1";
 
@@ -25,6 +39,10 @@ function Wiki() {
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
+  };
+
+  const getBadgeColor = (foldername: string) => {
+    return folderColors[folders.indexOf(foldername)];
   };
 
   // Fetches & formats wiki file metadata from Github
@@ -92,13 +110,12 @@ function Wiki() {
 
   return (
     <>
-      <h1>
-        Blue Nucleus / <span className="h1-subpage"> wiki </span>
-      </h1>
-
       {/* Filters Section */}
       <div className="grid grid-cols-[1fr_3fr] items-start justify-center">
-        <div className="w-[90%]">
+        <div className="w-full" box-="square contain:!top">
+          <span is-="badge" variant-="background0" className="pb-10">
+            Filters
+          </span>
           <div className="grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 items-center self-start text-left">
             <div> FILTER </div>
             <div className="whitespace-nowrap"> CLEAR FILTERS </div>
@@ -122,35 +139,40 @@ function Wiki() {
         </div>
 
         {/* Wiki Files */}
-        <div className="w-full">
-          <div className="wiki-table-titles grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 border-b-[0.5px] items-center self-start text-left">
-            <div> DATE </div>
-            <div> NAME </div>
-            <div className="text-center pr-2">TYPE</div>
+        <div className="w-full" box-="square contain:!top">
+          <h1 is-="badge" variant-="background0" className="pb-10">
+            Wikis
+          </h1>
+          <div className="grid grid-cols-[1fr_3fr_1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
+            <div className="pb-1 border-b-[0.5px]"> DATE </div>
+            <div className="pb-1 border-b-[0.5px]"> NAME </div>
+            <div className="pb-1 border-b-[0.5px] text-center pr-2">TYPE</div>
           </div>
-          <ul>
+          <div className="p-4 pb-10 pt-0">
             {filteredItems.map((item, idx) => (
-              <li
+              <div
                 key={idx}
-                className="m-0 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left hover:bg-[var(--purple)]"
+                className="m-0 pt-3 pb-3 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left"
               >
-                <div className="font-roboto">
+                <div className="col-start-1">
                   {item.publishDate ?? "09.09.2022"}
                 </div>
+
                 <Link
-                  className="font-roboto"
                   to={`/wikis/${item.type.toLowerCase()}/${item.name}`}
+                  className="col-start-2 hover:text-teal-300"
                 >
                   {formattedName(item.name)}
                 </Link>
-                <div className="flex items-center justify-center">
-                  <div className="wiki-type-badge">
+
+                <div className="col-start-3 text-center">
+                  <span is-="badge" variant-={getBadgeColor(item.type)}>
                     {item.type.toUpperCase()}
-                  </div>
+                  </span>
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </>

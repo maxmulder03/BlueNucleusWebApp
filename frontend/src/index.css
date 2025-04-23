@@ -3,3 +3,12 @@
 @import "@webtui/css";
 @import "@webtui/theme-catppuccin";
 @import "tailwindcss";
+
+div, header {
+  --box-border-color: var(--background1);
+
+  &:focus-within {
+    --box-border-color: var(--foreground2);
+  }
+}
+

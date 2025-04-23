@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <div className="m-2">
+    <div className="mx-auto my-2 w-[95%]">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <header
@@ -28,36 +28,45 @@ function App() {
             className="flex items-end justify-end p-6 mt-6"
           >
             <h1 className="self-start mr-auto"> Blue Nucleus </h1>
-            <NavLink to="/" is-="badge" className="ml-2 pt-2 pb-2 items-center">
-              HOME
+            <NavLink
+              to="/"
+              is-="badge"
+              variant-="background1"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
+              Home
             </NavLink>
             <NavLink
               to="/wiki"
               is-="badge"
+              variant-="background1"
               className="ml-2 pt-2 pb-2 items-center"
             >
-              WIKI
+              Wiki
             </NavLink>
             <NavLink
               to="/directory"
               is-="badge"
+              variant-="background1"
               className="ml-2 pt-2 pb-2 items-center"
             >
-              DIRECTORY
+              Directory
             </NavLink>
             <NavLink
               to="/dashboard"
               is-="badge"
+              variant-="background1"
               className="ml-2 pt-2 pb-2 items-center"
             >
-              DASHBOARD
+              Dashboard
             </NavLink>
             <NavLink
               to="/onboarding"
               is-="badge"
+              variant-="background1"
               className="ml-2 pt-2 pb-2 items-center"
             >
-              ONBOARDING
+              Onboarding
             </NavLink>
           </header>
           <Routes>
