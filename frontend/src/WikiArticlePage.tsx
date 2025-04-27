@@ -5,42 +5,51 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula as codeTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+interface Heading {
+  type: string;
+  content: string;
+}
+
 function WikiArticlePage() {
   const { wikiType, wikiArticleName } = useParams();
   const [markdownContent, setMarkdownContent] = React.useState("");
-  const [wikiHeadings, setWikiHeadings] = useState([]);
-  const headingsRef = useRef([]);
+  const [wikiHeadings, setWikiHeadings] = useState<Heading[]>([]);
+  const headingsRef = useRef<Heading[]>([]);
 
   const baseUrl =
     "https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main";
 
-  const updateHeadings = (children) => {
+  const updateHeadings = (children: React.ReactNode, type: string) => {
+    let content = "";
     if (typeof children === "string") {
-      headingsRef.current.push(children);
+      content = children;
     } else if (Array.isArray(children)) {
-      headingsRef.current.push(children.join(""));
+      content = children.join("");
     }
+    if (content.trim() !== "") headingsRef.current.push({ type, content });
   };
 
-  const headingsLeftPadding = (headingType) => {
+  const headingRenderer = (headingType: string, headingContent: string) => {
     switch (headingType) {
       case "h1":
-        return "pl-5";
+        return <h1>{headingContent}</h1>;
       case "h2":
-        return "pl-7";
+        return <h2 className="pl-5 pb-1 pr-2 truncate"> {headingContent}</h2>;
       case "h3":
-        return "pl-9";
+        return <h3 className="pl-7 pb-1 pr-2 truncate">{headingContent}</h3>;
       case "h4":
-        return "pl-11";
+        return <h4 className="pl-9 pb-1 pr-2 truncate">{headingContent}</h4>;
       case "h5":
-        return "pl-13";
+        return <h5 className="pl-11 pb-1 pr-2 truncate">{headingContent}</h5>;
       case "h6":
-        return "pl-15";
+        return <h6 className="pl-13 pb-1 pr-2 truncate">{headingContent}</h6>;
     }
   };
 
   useEffect(() => {
-    fetch(baseUrl + `/${wikiType}/${encodeURIComponent(wikiArticleName)}.md`)
+    fetch(
+      baseUrl + `/${wikiType}/${encodeURIComponent(wikiArticleName ?? "")}.md`,
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch wiki article");
@@ -98,27 +107,27 @@ function WikiArticlePage() {
           <div className="p-8 col-start-1 col-end-9">
             <Markdown
               components={{
-                h1: (props) => {
+                h1: () => {
                   return <div className="hidden"></div>;
                 },
                 h2: ({ ...props }) => {
-                  updateHeadings(props.children);
+                  updateHeadings(props.children, "h2");
                   return <h2 className="pt-6 pb-1" {...props} />;
                 },
                 h3: ({ ...props }) => {
-                  updateHeadings(props.children);
+                  updateHeadings(props.children, "h3");
                   return <h3 className="pt-6 pb-1" {...props} />;
                 },
                 h4: ({ ...props }) => {
-                  updateHeadings(props.children);
+                  updateHeadings(props.children, "h4");
                   return <h4 className="pt-6 pb-1" {...props} />;
                 },
                 h5: ({ ...props }) => {
-                  updateHeadings(props.children);
+                  updateHeadings(props.children, "h5");
                   return <h5 className="pt-6 pb-1" {...props} />;
                 },
                 h6: ({ ...props }) => {
-                  updateHeadings(props.children);
+                  updateHeadings(props.children, "h6");
                   return <h6 className="pt-6 pb-1" {...props} />;
                 },
                 code(props) {
@@ -161,14 +170,9 @@ function WikiArticlePage() {
               <span is-="badge" variant-="background0" className="pb-10">
                 Contents
               </span>
-              {wikiHeadings.map((heading, idx) => (
-                <div
-                  className={`${headingsLeftPadding(heading["type"])} pl-5 pb-1 pr-2 truncate`}
-                  key={idx}
-                >
-                  <a href="#fixme">{heading["content"]}</a>
-                </div>
-              ))}
+              {wikiHeadings.map((heading) =>
+                headingRenderer(heading["type"], heading["content"]),
+              )}
             </div>
           </div>
         </div>
