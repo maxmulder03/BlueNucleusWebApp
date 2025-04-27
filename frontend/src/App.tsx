@@ -1,4 +1,3 @@
-import "./App.css";
 import Home from "./Home";
 import CreateAccountWrapper from "./CreateAccountWrapper";
 import SignIn from "./SignIn";
@@ -21,24 +20,53 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <>
+    <div className="mx-auto my-2 w-[95%]">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <header className="app-header-container">
-            <NavLink to="/" className="app-header-link">
-              HOME
+          <header
+            box-="square "
+            className="flex items-end justify-end p-6 mt-6"
+          >
+            <h1 className="self-start mr-auto"> Blue Nucleus </h1>
+            <NavLink
+              to="/"
+              is-="badge"
+              variant-="background1"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
+              Home
             </NavLink>
-            <NavLink to="/wiki" className="app-header-link">
-              WIKI
+            <NavLink
+              to="/wiki"
+              is-="badge"
+              variant-="background1"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
+              Wiki
             </NavLink>
-            <NavLink to="/directory" className="app-header-link">
-              DIRECTORY
+            <NavLink
+              to="/directory"
+              is-="badge"
+              variant-="background1"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
+              Directory
             </NavLink>
-            <NavLink to="/dashboard" className="app-header-link">
-              DASHBOARD
+            <NavLink
+              to="/dashboard"
+              is-="badge"
+              variant-="background1"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
+              Dashboard
             </NavLink>
-            <NavLink to="/onboarding" className="app-header-link">
-              ONBOARDING
+            <NavLink
+              to="/onboarding"
+              is-="badge"
+              variant-="background1"
+              className="ml-2 pt-2 pb-2 items-center"
+            >
+              Onboarding
             </NavLink>
           </header>
           <Routes>
@@ -56,7 +84,7 @@ function App() {
           </Routes>
         </QueryClientProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

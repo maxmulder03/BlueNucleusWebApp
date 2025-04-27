@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import "./ProfileCard.css";
 
 function ProfileCard({ userProps }) {
   const cardRef = useRef();

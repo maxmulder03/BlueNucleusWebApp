@@ -1,6 +1,5 @@
 import { useState } from "react";
 import CreateAccount from "./CreateAccount.jsx";
-import "./CreateAccountWrapper.css";
 
 function CreateAccountWrapper() {
   const [createAccountSuccessfully, setCreateAccountSuccessfully] =

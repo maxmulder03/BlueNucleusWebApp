@@ -1,75 +1,14 @@
+@layer base, utils, components;
+
+@import "@webtui/css";
+@import "@webtui/theme-catppuccin";
 @import "tailwindcss";
 
-@layer components {
-  .md-heading {
-    @apply text-6xl pt-4 pb-2;
-    color: var(--navy);
-    font-weight: 800;
-    font-family: "Inter", sans-serif;
-  }
+div, header {
+  --box-border-color: var(--background1);
 
-  .md-subheading {
-    color: var(--navy);
-  }
-
-  .md {
-    text-align: left;
+  &:focus-within {
+    --box-border-color: var(--foreground2);
   }
 }
 
-:root {
-  --primary-background: #f3f6f8;
-  --primary-darker-background: #c2b8ac;
-  --primary-text: #1a1d20;
-  --primary-border: #1a1d20;
-  --dark-navy: #181c2e;
-  --navy: #212740;
-  --light-navy: #2d324a;
-  --lighter-navy: #959aad;
-  --lighter-gray: #c8c8c8;
-  --lightest-gray: #ededed;
-  --light-gray: #1e1e1e;
-  --black: black;
-
-  --purple: #bb99ff;
-  --light-purple: #f2ebff;
-  --light-yellow: #feffc6;
-  --bright-yellow: #dfff63;
-  --orange: #ff7901;
-  --red: #f87c72;
-  --green: #72f88f;
-  --blue: #a2d0fa;
-
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  margin: 0pt;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background: var(--primary-background);
-  font-size: 14pt;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  width: 100%;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: start;
-}
-
-#root {
-  width: 90vw;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
