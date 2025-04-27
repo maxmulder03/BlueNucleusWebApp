@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -42,33 +42,65 @@ function WikiArticlePage() {
       });
   };
 
+  const [wikiTitle, setWikiState] = useState(wikiArticleName);
+
   return (
     <>
-      <div className="prose prose-neutral m-4 mx-auto w-[70%] bg-[var(--primary-background)] rounded-3xl p-8">
-        <Markdown
-          components={{
-            code(props) {
-              const { children, className, ...rest } = props;
-              const match = /language-(\w+)/.exec(className || "");
-              return match ? (
-                <SyntaxHighlighter
-                  {...rest}
-                  PreTag="div"
-                  language={match[1]}
-                  style={codeTheme}
-                >
-                  {String(children).replace(/\n$/, "")}
-                </SyntaxHighlighter>
-              ) : (
-                <code {...rest} className={className}>
-                  {children}
-                </code>
-              );
-            },
-          }}
+      {/* Wiki Article Grid*/}
+      <div className="grid grid-cols-12">
+        {/* Table of Contents */}
+        <div
+          box-="square contain:!top"
+          className="col-start-1 col-end-3 h-full"
         >
-          {markdownContent}
-        </Markdown>
+          <span is-="badge" variant-="background0" className="pb-10">
+            Pages
+          </span>
+        </div>
+        <div
+          box-="square contain:!top"
+          className="col-start-3 col-end-12 h-full"
+        >
+          <h1 is-="badge" variant-="background0">
+            &nbsp;{wikiTitle}
+          </h1>
+          <div className="p-8">
+            <Markdown
+              components={{
+                h1: (props) => {
+                  const { children, className, ...rest } = props;
+                  setWikiState(children.toString());
+                  return <div className="hidden"></div>;
+                },
+                h2: ({ ...props }) => <h2 className="pt-6 pb-1" {...props} />,
+                h3: ({ ...props }) => <h3 className="pt-6 pb-1" {...props} />,
+                h4: ({ ...props }) => <h4 className="pt-6 pb-1" {...props} />,
+                h5: ({ ...props }) => <h5 className="pt-6 pb-1" {...props} />,
+                h6: ({ ...props }) => <h6 className="pt-6 pb-1" {...props} />,
+                code(props) {
+                  const { children, className, ...rest } = props;
+                  const match = /language-(\w+)/.exec(className || "");
+                  return match ? (
+                    <SyntaxHighlighter
+                      {...rest}
+                      PreTag="div"
+                      language={match[1]}
+                      style={codeTheme}
+                    >
+                      {String(children).replace(/\n$/, "")}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code {...rest} className={className}>
+                      {children}
+                    </code>
+                  );
+                },
+              }}
+            >
+              {markdownContent}
+            </Markdown>
+          </div>
+        </div>
       </div>
     </>
   );
