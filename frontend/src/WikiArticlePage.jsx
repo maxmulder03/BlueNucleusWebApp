@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -8,9 +8,36 @@ import { dracula as codeTheme } from "react-syntax-highlighter/dist/esm/styles/p
 function WikiArticlePage() {
   const { wikiType, wikiArticleName } = useParams();
   const [markdownContent, setMarkdownContent] = React.useState("");
+  const [wikiHeadings, setWikiHeadings] = useState([]);
+  const headingsRef = useRef([]);
 
   const baseUrl =
     "https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main";
+
+  const updateHeadings = (children) => {
+    if (typeof children === "string") {
+      headingsRef.current.push(children);
+    } else if (Array.isArray(children)) {
+      headingsRef.current.push(children.join(""));
+    }
+  };
+
+  const headingsLeftPadding = (headingType) => {
+    switch (headingType) {
+      case "h1":
+        return "pl-5";
+      case "h2":
+        return "pl-7";
+      case "h3":
+        return "pl-9";
+      case "h4":
+        return "pl-11";
+      case "h5":
+        return "pl-13";
+      case "h6":
+        return "pl-15";
+    }
+  };
 
   useEffect(() => {
     fetch(baseUrl + `/${wikiType}/${encodeURIComponent(wikiArticleName)}.md`)
@@ -21,6 +48,7 @@ function WikiArticlePage() {
         return response.text();
       })
       .then((data) => {
+        headingsRef.current = [];
         setMarkdownContent(data);
       })
       .catch((error) => {
@@ -42,12 +70,15 @@ function WikiArticlePage() {
       });
   };
 
-  const [wikiTitle, setWikiState] = useState(wikiArticleName);
+  useEffect(() => {
+    // after markdown content is rendered, update the wikiHeadings
+    setWikiHeadings([...headingsRef.current]);
+  }, [markdownContent]);
 
   return (
     <>
       {/* Wiki Article Grid*/}
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 w-full">
         {/* Table of Contents */}
         <div
           box-="square contain:!top"
@@ -59,24 +90,37 @@ function WikiArticlePage() {
         </div>
         <div
           box-="square contain:!top"
-          className="col-start-3 col-end-12 h-full"
+          className="col-start-3 col-end-13 h-full grid grid-cols-12"
         >
           <h1 is-="badge" variant-="background0">
-            &nbsp;{wikiTitle}
+            &nbsp;{wikiArticleName}
           </h1>
-          <div className="p-8">
+          <div className="p-8 col-start-1 col-end-9">
             <Markdown
               components={{
                 h1: (props) => {
-                  const { children, className, ...rest } = props;
-                  setWikiState(children.toString());
                   return <div className="hidden"></div>;
                 },
-                h2: ({ ...props }) => <h2 className="pt-6 pb-1" {...props} />,
-                h3: ({ ...props }) => <h3 className="pt-6 pb-1" {...props} />,
-                h4: ({ ...props }) => <h4 className="pt-6 pb-1" {...props} />,
-                h5: ({ ...props }) => <h5 className="pt-6 pb-1" {...props} />,
-                h6: ({ ...props }) => <h6 className="pt-6 pb-1" {...props} />,
+                h2: ({ ...props }) => {
+                  updateHeadings(props.children);
+                  return <h2 className="pt-6 pb-1" {...props} />;
+                },
+                h3: ({ ...props }) => {
+                  updateHeadings(props.children);
+                  return <h3 className="pt-6 pb-1" {...props} />;
+                },
+                h4: ({ ...props }) => {
+                  updateHeadings(props.children);
+                  return <h4 className="pt-6 pb-1" {...props} />;
+                },
+                h5: ({ ...props }) => {
+                  updateHeadings(props.children);
+                  return <h5 className="pt-6 pb-1" {...props} />;
+                },
+                h6: ({ ...props }) => {
+                  updateHeadings(props.children);
+                  return <h6 className="pt-6 pb-1" {...props} />;
+                },
                 code(props) {
                   const { children, className, ...rest } = props;
                   const match = /language-(\w+)/.exec(className || "");
@@ -99,6 +143,33 @@ function WikiArticlePage() {
             >
               {markdownContent}
             </Markdown>
+          </div>
+          <div
+            className="
+              col-start-9
+              col-end-13
+              relative
+              before:content-['']
+              before:absolute
+              before:top-0
+              before:left-[calc(0.5ch-var(--box-border-width)/2)]
+              before:w-[var(--box-border-width)]
+              before:h-full
+              before:bg-[var(--background2)]"
+          >
+            <div>
+              <span is-="badge" variant-="background0" className="pb-10">
+                Contents
+              </span>
+              {wikiHeadings.map((heading, idx) => (
+                <div
+                  className={`${headingsLeftPadding(heading["type"])} pl-5 pb-1 pr-2 truncate`}
+                  key={idx}
+                >
+                  <a href="#fixme">{heading["content"]}</a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
