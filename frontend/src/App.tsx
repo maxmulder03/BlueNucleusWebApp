@@ -23,6 +23,15 @@ function App() {
     <div className="mx-auto my-2 w-[95%]">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
+          <pre className="text-center text-white text-l font-bold">
+            {String.raw`
+__________.__                   _______                .__                       
+\______   \  |  __ __   ____    \      \  __ __   ____ |  |   ____  __ __  ______
+ |    |  _/  | |  |  \_/ __ \   /  |    \|  |  \_/ ___\|  | _/ __ \|  |  \/  ___/
+ |    |   \  |_|  |  /\  ___/  /   |     \  |  /\  \___|  |_\  ___/|  |  /\___ \ 
+ |________/____/____/  \____>  \___|_____/____/  \_____>____/\____>_____//______>
+          `}
+          </pre>
           <header
             box-="square "
             className="flex items-end justify-end p-6 mt-6"
