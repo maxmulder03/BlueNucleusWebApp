@@ -120,7 +120,7 @@ function Directory() {
 
   return (
     <>
-      <h1>Directory</h1>
+      <h1 className="pb-3">Directory</h1>
 
       <div box-="round contain:!top" className="">
         <div is-="badge" variant-="background0">
@@ -128,7 +128,16 @@ function Directory() {
         </div>
 
         <div>
-          <button onClick={copyEmails}>Copy All Emails</button>
+          <button className="ml-3 mt-2 mb-2 h-[80%]" onClick={copyEmails}>
+            Copy All Emails
+          </button>
+          <button
+            variant-="background2"
+            className="ml-3 mt-2 mb-2 h-[80%]"
+            onClick={copyEmails}
+          >
+            Filter on...
+          </button>
         </div>
       </div>
 
@@ -176,6 +185,12 @@ function Directory() {
                     email:{"   "}
                   </div>
                   {user.email}
+                </div>
+                <div>
+                  {" "}
+                  <div className="inline text-[var(--background3)]">
+                    current projects:{"   "}
+                  </div>
                 </div>
                 <div>
                   <span className="text-[var(--background3)]">status: </span>
