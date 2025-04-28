@@ -53,7 +53,7 @@ function Directory() {
       activeEmployee: true,
     },
     {
-      firstName: "Mathew",
+      firstName: "Matthew",
       lastName: "Smith",
       email: "mattsmith1652@gmail.com",
       githubUsername: "Smittyxc",
@@ -157,8 +157,8 @@ function Directory() {
               </span>
             </div>
 
-            <div className="grid grid-cols-3 h-full items-center justify-items-center translate-y-[-18px] pl-2">
-              <div className="col-start-1 col-span-1 h-[60%] w-[65%] bg-gray-700"></div>
+            <div className="grid grid-cols-3 h-full items-center justify-items-center translate-y-[-18px]">
+              <div className="col-start-1 col-span-1 h-[60%] w-[65%] bg-gray-700 rounded-sm"></div>
               <div className="grid grid-col-1 gap-1 col-start-2 col-span-2 p-4">
                 <div>
                   {" "}
@@ -172,7 +172,9 @@ function Directory() {
                 </div>
                 <div>
                   {" "}
-                  <span className="text-[var(--background3)]">email: </span>
+                  <div className="inline text-[var(--background3)]">
+                    email:{"   "}
+                  </div>
                   {user.email}
                 </div>
                 <div>
