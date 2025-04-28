@@ -87,7 +87,7 @@ function WikiArticlePage() {
   return (
     <>
       {/* Wiki Article Grid*/}
-      <div className="grid grid-cols-12 w-full">
+      <div className="grid grid-cols-12 w-full h-full auto-rows-fr min-h-0 pb-2 ">
         {/* Table of Contents */}
         <div
           box-="square contain:!top"
@@ -104,7 +104,7 @@ function WikiArticlePage() {
           <h1 is-="badge" variant-="background0">
             &nbsp;{wikiArticleName}
           </h1>
-          <div className="p-8 col-start-1 col-end-9">
+          <div className="p-8 col-start-1 col-end-9 overflow-y-scroll">
             <Markdown
               components={{
                 h1: () => {

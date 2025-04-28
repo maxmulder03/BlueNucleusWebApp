@@ -160,7 +160,7 @@ function Wiki() {
 
                 <Link
                   to={`/wikis/${item.type.toLowerCase()}/${item.name}`}
-                  className="col-start-2 hover:text-teal-300"
+                  className="col-start-2 hover:text-teal-200"
                 >
                   {formattedName(item.name)}
                 </Link>

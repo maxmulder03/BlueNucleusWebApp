@@ -4,6 +4,11 @@
 @import "@webtui/theme-catppuccin";
 @import "tailwindcss";
 
+html, body, #root { 
+  height: 100%;
+  min-height: 0;
+}
+
 div, header {
   --box-border-color: var(--background1);
 
