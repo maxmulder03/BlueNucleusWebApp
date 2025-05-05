@@ -66,7 +66,7 @@ function Wiki() {
             const fileName = metadata.pop()?.split(".")[0];
             const folderName = metadata.pop();
             if (fileName && folderName) {
-              // TODO: Rework dedubplication logic, this isn't great
+              // TODO: Rework deduplication logic, this isn't great
               setFiles((prev) =>
                 [
                   ...prev,
@@ -113,29 +113,33 @@ function Wiki() {
       {/* Filters Section */}
       <div className="grid grid-cols-[1fr_3fr] items-start justify-center">
         <div className="w-full" box-="square contain:!top">
-          <span is-="badge" variant-="background0" className="pb-10">
+          <span is-="badge" variant-="background0" className="pb-6">
             Filters
           </span>
-          <div className="grid grid-cols-[1fr_3fr_1fr] pt-2 pb-1 items-center self-start text-left">
-            <div> FILTER </div>
-            <div className="whitespace-nowrap"> CLEAR FILTERS </div>
-          </div>
-          <ul>
+          <div>
             {folders.map((folder, idx) => (
-              <li
-                key={idx}
-                className="m-0 p-0 list-none wiki-filter-section-container"
-              >
+              <li key={idx} className="list-none m-0 pl-2 p-1">
                 <input
                   type="checkbox"
-                  className="border-[0.5px] border-primary-border rounded-[2pt] w-[10pt] h-[10pt]"
+                  className=" w-[10pt] h-[10pt]"
                   checked={activeFilters.includes(folder)}
                   onChange={() => handleFilterChange(folder)}
                 />
-                <label> {folder} </label>
+                <label className="pl-2"> {folder}</label>
               </li>
             ))}
-          </ul>
+          </div>
+          <div className="flex flex-row justify-start pr-2">
+            <button
+              is-="button"
+              variant-="background3"
+              box-="round"
+              className="active:text-white"
+              onClick={() => setActiveFilters([])}
+            >
+              Clear Filters
+            </button>
+          </div>
         </div>
 
         {/* Wiki Files */}
@@ -143,7 +147,7 @@ function Wiki() {
           <h1 is-="badge" variant-="background0" className="pb-10">
             Wikis
           </h1>
-          <div className="grid grid-cols-[1fr_3fr_1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
+          <div className="grid grid-cols-[1fr_3fr1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
             <div className="pb-1 border-b-[0.5px]"> DATE </div>
             <div className="pb-1 border-b-[0.5px]"> NAME </div>
             <div className="pb-1 border-b-[0.5px] text-center pr-2">TYPE</div>
