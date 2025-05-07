@@ -1,39 +1,29 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import express from "express";
+import { initializeApp } from "firebase-admin/app";
+import cors from "cors";
+import helmet from "helmet";
+import { onRequest } from "firebase-functions/v2/https";
 
-import {onRequest} from "firebase-functions/v2/https";
-import {initializeApp} from "firebase-admin/app";
-import {getFirestore} from "firebase-admin/firestore";
+import userInfo from "./userInfo";
 
 initializeApp();
 
-type EmployeeType = "Undergraduate" | "Graduate" | "Admin";
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use(helmet());
 
-interface UserInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  githubUsername: string;
-  employeeType: EmployeeType;
-  activeEmployee: boolean;
-}
+// Define routes here
+app.use("/userInfo", userInfo);
 
-export const createUser = onRequest(async (request, response) => {
-  const userInfo: UserInfo = request.body;
-  const result = await getFirestore().collection("users").add(userInfo);
-  response.json({result: `User Info Created with ID: ${result.id}`});
+const port = 3000;
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+exports.api = onRequest(app);
