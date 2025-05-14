@@ -4,8 +4,7 @@ import { getFirestore } from "firebase-admin/firestore";
 type EmployeeType = "Undergraduate" | "Graduate" | "Admin";
 
 interface UserInfo {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   email: string;
   githubUsername: string;
   employeeType: EmployeeType;
@@ -35,8 +34,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const db = getFirestore();
   const userInfo: UserInfo = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
+    fullName: req.body.fullName,
     email: req.body.email,
     githubUsername: req.body.githubUsername,
     employeeType: req.body.employeeType,
@@ -56,12 +54,12 @@ router.post("/", async (req, res) => {
 router.put("/:email", async (req, res) => {
   const db = getFirestore();
   const userInfo: UserInfo = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
+    fullName: req.body.fullName,
     email: req.body.email,
     githubUsername: req.body.githubUsername,
     employeeType: req.body.employeeType,
     activeEmployee: req.body.activeEmployee,
+    activeProjects: [],
   };
   try {
     await db.collection("userInfo").doc(req.params.email).set(userInfo);

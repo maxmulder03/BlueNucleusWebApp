@@ -5,8 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function CreateAccount({ onAccountCreation }) {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [githubUsername, setGithubAccount] = useState("");
   const [password, setPassword] = useState("");
@@ -29,8 +28,7 @@ function CreateAccount({ onAccountCreation }) {
         firebaseId: user.uid,
         username: user.email,
         email,
-        firstName,
-        lastName,
+        fullName,
         githubUsername: githubUsername,
         activeStatus: true,
         isAdmin: true,
@@ -78,21 +76,11 @@ function CreateAccount({ onAccountCreation }) {
           <div className="pl-6 pt-3">
             <form onSubmit={handleSubmit} className="FormContainer">
               <div className="pt-3 pb-2 text-end">
-                <label htmlFor="firstName">first-name: </label>
+                <label htmlFor="fullName">full-name: </label>
                 <input
                   type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="pt-3 pb-2 text-end">
-                <label htmlFor="lastName">last-name: </label>
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                   required
                 />
               </div>
