@@ -147,7 +147,7 @@ function Wiki() {
           <h1 is-="badge" variant-="background0" className="pb-10">
             Wikis
           </h1>
-          <div className="grid grid-cols-[1fr_3fr1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
+          <div className="grid grid-cols-[1fr_3fr_1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
             <div className="pb-1 border-b-[0.5px]"> DATE </div>
             <div className="pb-1 border-b-[0.5px]"> NAME </div>
             <div className="pb-1 border-b-[0.5px] text-center pr-2">TYPE</div>
