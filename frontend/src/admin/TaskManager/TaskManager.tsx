@@ -1,0 +1,156 @@
+import { useCallback, useState } from "react";
+const taskComponentMap = {
+  view: ViewTask,
+  create: CreateTask,
+  edit: EditTask,
+} as const;
+
+type TaskViews = keyof typeof taskComponentMap;
+
+function TaskManager() {
+  const [taskView, setTaskView] = useState<TaskViews>("view");
+
+  return (
+    <>
+      <div box-="round contain:!top" className="mt-4">
+        <div is-="badge" variant-="background0">
+          Employee Tasks
+        </div>
+        <TaskManagerMenu onViewUpdate={setTaskView} />
+        <ActiveTaskView taskView={taskView} />
+      </div>
+    </>
+  );
+}
+
+function ActiveTaskView({ taskView }: { taskView: TaskViews }) {
+  console.log(taskComponentMap[taskView]);
+  const Component = taskComponentMap[taskView];
+  return <Component />;
+}
+
+interface TaskManagerMenuProps {
+  onViewUpdate: (view: TaskViews) => void;
+}
+
+function TaskManagerMenu({ onViewUpdate }: TaskManagerMenuProps) {
+  return (
+    <div box-="square" className="flex flex-row justify-start mb-1 gap-2">
+      {Object.keys(taskComponentMap).map((view) => (
+        <button
+          key={view}
+          is-="button"
+          size-="small"
+          variant-="background3"
+          className="first:ml-1"
+          onClick={() => onViewUpdate(view)}
+        >
+          {view}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function ViewTask() {
+  const [focused, setFocused] = useState<string>("");
+
+  const exampleEmployeeNames = {
+    "": [], // TODO: Remove & fix error handling of when focused is not set.
+    "Max Mulder": [
+      { taskName: "Task 1", completed: false },
+      { taskName: "Task 2", completed: true },
+    ],
+    "Matt Smith": [
+      { taskName: "Task 1", completed: false },
+      { taskName: "Task 2", completed: true },
+      { taskName: "Task 3", completed: false },
+    ],
+    "Jonathan Englesma": [
+      { taskName: "Task 1", completed: false },
+      { taskName: "Task 2", completed: true },
+      { taskName: "Task 3", completed: true },
+      { taskName: "Task 4", completed: false },
+    ],
+    "Lucy Roop": [
+      { taskName: "Task 1", completed: false },
+      { taskName: "Task 2", completed: true },
+    ],
+    "Hoan Lam": [
+      { taskName: "Task 1", completed: false },
+      { taskName: "Task 2", completed: true },
+      { taskName: "Task 3", completed: false },
+      { taskName: "Task 4", completed: false },
+      { taskName: "Task 5", completed: false },
+      { taskName: "Task 6", completed: true },
+      { taskName: "Task 7", completed: true },
+      { taskName: "Task 8", completed: true },
+    ],
+  };
+
+  const onFocusChange = (name: string | null) => {
+    return name === focused ? "" : name;
+  };
+
+  return (
+    <div className="ml-3 mr-3 pb-2">
+      {/* TODO: update focused to clear when user clicks away from component */}
+      <div className="grid grid-cols-[1fr_4fr] gap-2 pl-2">
+        <div className="border-r-[0.2ch] border-[var(--background2)]">
+          {Object.keys(exampleEmployeeNames).map((name) => (
+            <div key={name} className="flex flex-row justify-start p-2">
+              {/* TODO: clickable div is bad practive, switch to button & override webtui button styles */}
+              <div
+                onClick={() => {
+                  setFocused(onFocusChange(name));
+                }}
+                className={
+                  focused === name
+                    ? "text-[var(--green)]"
+                    : focused === ""
+                      ? ""
+                      : "text-[var(--foreground2)]"
+                }
+              >
+                {" "}
+                {name}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="">
+          {exampleEmployeeNames[focused].map((task) => (
+            <div
+              key={task.taskName}
+              className="flex flex-row justify-start p-2 gap-2"
+            >
+              <div
+                className={`
+                  pr-4 justify-self-end ${task.completed ? "text-[var(--green)]" : "text-[var(--red)]"}`}
+              >
+                {task.completed ? "[X]" : "[#]"}
+              </div>
+              <div
+                className={
+                  task.completed ? "text-[var(--green)]" : "text-[var(--red)]"
+                }
+              >
+                {task.taskName}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CreateTask() {
+  return <div>Create Task</div>;
+}
+
+function EditTask() {
+  return <div>Edit Task</div>;
+}
+
+export default TaskManager;

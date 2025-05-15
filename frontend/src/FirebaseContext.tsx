@@ -4,11 +4,13 @@ import { auth, db } from "./FirebaseApp.js";
 
 type AuthContextValue = {
   user: FirebaseUser | null;
+  isAdmin: boolean;
   loading: boolean;
 };
 
 const FirebaseContext = createContext<AuthContextValue>({
   user: null,
+  isAdmin: false,
   loading: true,
 });
 
@@ -17,9 +19,13 @@ export const FirebaseProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user) return;
+      const token = await user.getIdTokenResult(true);
+      setIsAdmin(token.claims.role === "admin");
       setUser(user);
       setLoading(false);
     });
@@ -27,7 +33,7 @@ export const FirebaseProvider: React.FC<React.PropsWithChildren> = ({
   }, []);
 
   return (
-    <FirebaseContext.Provider value={{ user, loading }}>
+    <FirebaseContext.Provider value={{ user, isAdmin, loading }}>
       {children}
     </FirebaseContext.Provider>
   );

@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter(routes);
 
 function App() {
-  const { user } = useAuth();
+  const { user, isAdmin } = useAuth();
 
   return (
     <div className="flex flex-col h-screen min-h-0 mx-auto my-2 w-[95%]">
@@ -32,7 +32,13 @@ __________.__                   _______                .__
           </pre>
           <pre className="m-0 text-sm text-end">
             <pre>© 2025 Blue Nucleus</pre>
-            <pre>{user?.email ? user.email : "NO LOGGED IN USER"}</pre>
+            <pre>
+              {user?.email
+                ? isAdmin
+                  ? user.email + " (Admin)"
+                  : ""
+                : "NO LOGGED IN USER"}
+            </pre>
             <pre>{new Date().toLocaleString()}</pre>
           </pre>
         </div>

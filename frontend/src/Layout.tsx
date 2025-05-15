@@ -1,15 +1,18 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "./FirebaseContext";
 
 function Header() {
   const { pathname } = useLocation(); // e.g. "/wikis/blogs/Web%20Development%20Learning%20Resources"
   const segments = pathname
-    .split("/") // ["", "wikis", "blogs", "Web%20Development%20Learning%20Resources"]
-    .filter(Boolean) // remove leading ""
-    .map((s) => decodeURIComponent(s)) // turn %20 back into space
-    .map((s) => s.trim().replace(/ +/g, "-")); // "Web Development..." → "Web-Development..."
+    .split("/")
+    .filter(Boolean)
+    .map((s) => decodeURIComponent(s))
+    .map((s) => s.trim().replace(/ +/g, "-"));
 
   const path = segments.length ? `/${segments.join("/")}/` : "";
+
+  const { isAdmin } = useAuth();
 
   return (
     <header box-="square" className="flex items-end justify-end p-6 shrink-0">
@@ -59,6 +62,15 @@ function Header() {
         className="ml-2 pt-2 pb-2 items-center"
       >
         Onboarding
+      </NavLink>
+
+      <NavLink
+        to="/admin-portal"
+        is-="badge"
+        variant-={isAdmin ? "yellow" : "red"}
+        className={`ml-2 pt-2 pb-2 items-center ${isAdmin ? "" : "line-through"}`}
+      >
+        Admin Portal
       </NavLink>
     </header>
   );
