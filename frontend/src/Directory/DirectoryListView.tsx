@@ -11,9 +11,9 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
   console.log(getGridTemplateColumns(numFields));
 
   return (
-    <div box-="round">
+    <div box-="round" className="overflow-x-auto">
       <div className={`grid ${getGridTemplateColumns(numFields)} gap-2 p-2`}>
-        <div>Name</div>
+       <div className="sticky left-0 z-20 px-2">Name</div>
         <div>Email</div>
         <div>Github Account</div>
         <div className="justify-self-center">Employee Type</div>
@@ -26,8 +26,9 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
           className={`grid ${getGridTemplateColumns(numFields)} gap-2 p-2`}
         >
           <div> {user.fullName} </div>
-          <div is-="badge" variant-="background2" className="w-fit">
-            {user.email}
+          <div is-="badge" variant-="background2" className="w-fit overflow-hidden text-ellipsis max-w-full"
+            title={user.email} >
+            <span className="block truncate">{user.email}</span>
           </div>
           <a href={`https://github.com/${user.githubUsername}`}>
             {user.githubUsername}
