@@ -34,8 +34,6 @@ function CreateAccount({ onAccountCreation }) {
         isAdmin: true,
       };
 
-      console.log("User Payload: ", JSON.stringify(userPayload));
-
       const response = await fetch("http://localhost:8080/api/users/create", {
         method: "POST",
         headers: {
@@ -47,8 +45,6 @@ function CreateAccount({ onAccountCreation }) {
 
       if (response.ok) {
         const createdUser = await response.json();
-        console.log("Created User: ", createdUser);
-        console.log("onAccountCreation prop: ", onAccountCreation);
         onAccountCreation();
         setTimeout(() => {
           navigate("/sign-in");

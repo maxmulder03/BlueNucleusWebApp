@@ -113,7 +113,7 @@ function Wiki() {
       {/* Filters Section */}
       <div className="grid grid-cols-[1fr_3fr] items-start justify-center">
         <div className="w-full" box-="square contain:!top">
-          <span is-="badge" variant-="background0" className="pb-6">
+          <span is-="badge" variant-="background1" className="pb-6">
             Filters
           </span>
           <div>

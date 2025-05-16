@@ -24,8 +24,9 @@ function OnboardingItem({ task, setTotalCompleted }: OnboardingItemProps) {
     <div
       box-="round"
       variant-={completed ? "green" : "background1"}
-      className={`m-0 pl-5 ${completed ? "text-[var(--green)]" : "text-[var(--foreground1)]"
-        }`}
+      className={`m-0 pl-5 ${
+        completed ? "text-[var(--green)]" : "text-[var(--foreground1)]"
+      }`}
     >
       <div onClick={() => updateCompleted()}>
         {" "}

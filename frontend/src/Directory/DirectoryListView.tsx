@@ -8,8 +8,6 @@ interface DirectoryListViewProps {
 function DirectoryListView({ users }: DirectoryListViewProps) {
   const numFields = Object.keys(users[0]).length;
 
-  console.log(getGridTemplateColumns(numFields));
-
   return (
     <div box-="round">
       <div className={`grid ${getGridTemplateColumns(numFields)} gap-2 p-2`}>
