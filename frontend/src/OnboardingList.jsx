@@ -9,7 +9,7 @@ function OnboardingCell({ task, onClick }) {
 
   const handleButtonClick = () => {
     const userid = localStorage.getItem("uid");
-    if (!userid) return console.log("no-user-id found");
+    if (!userid) return;
     setIsComplete((prev) => !prev);
     onClick(task, !isComplete ? 1 : 0);
   };
@@ -49,7 +49,6 @@ function OnboardingList() {
   }, [refreshTrigger]);
 
   const onSubmit = (data, status) => {
-    console.log("AssignedUserTasks before", AssignedUserTasks, userTask);
     // check if user has any assigned tasks
     // and make a put request else make a POST request
 
@@ -60,7 +59,6 @@ function OnboardingList() {
           if (item.taskid === data.taskId) item["completed"] = status;
           return item;
         });
-        console.log("In find", AssignedUserTasks);
         const json = {
           id: userTask.id,
           taskids: JSON.stringify(AssignedUserTasks),

@@ -18,17 +18,14 @@ function SignIn() {
           const user = userCredential.user;
           localStorage.setItem("uid", user.uid);
           navigate("/");
-          console.log(user);
         },
       );
     } catch (error) {
       const firebaseError = error as { code?: string; message: string };
-      console.log(firebaseError);
       setErrorMessage(
         AUTH_ERROR_MESSAGES[firebaseError.code ?? ""] ??
-          "Something went wrong. Please try again.",
+        "Something went wrong. Please try again.",
       );
-      console.error("Error signing in: ", error.message);
     }
 
     setEmail("");

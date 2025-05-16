@@ -24,8 +24,6 @@ function EmployeeDashboard() {
     const fetchProfileInfo = async () => {
       if (!user) return;
       try {
-        console.log("User:", user);
-        console.log("Hello:", user.email);
         const userEmail = user.email;
         const userInfoRef = collection(db, "userInfo");
         const q = query(userInfoRef, where("email", "==", userEmail));
@@ -35,7 +33,6 @@ function EmployeeDashboard() {
           ...doc.data(),
         }));
         setProfileInfo(data[0]);
-        console.log(data[0]);
       } catch (e) {
         console.error("Error Fetching user info:", e);
         setProfileInfo("Error Fetching UserInfo");
