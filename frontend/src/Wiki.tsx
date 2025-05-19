@@ -14,6 +14,7 @@ function Wiki() {
   };
 
   const [files, setFiles] = useState<WikiFile[]>([]);
+  const [articleCounts, setArticleCounts] = useState<Record<string, number>>({})
   const [folders, setFolders] = useState<string[]>([]);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
@@ -45,6 +46,23 @@ function Wiki() {
     return folderColors[folders.indexOf(foldername)];
   };
 
+  const articleCount = (tree: GithubResponseItem[]) => {
+    return tree.reduce((acc: Record<string, number>, cur: GithubResponseItem) => {
+      if(cur.type === "blob") {
+        const articleType = cur.path.substring(0, cur.path.indexOf("/"))
+        
+        acc[articleType] = (acc[articleType] || 0) + 1;
+        // if(articleType in acc){
+        //   acc[articleType] += 1
+        // }
+        // else {
+        //   acc[articleType] = 1
+        // }
+      }
+      return acc
+    }, {})
+  }
+
   // Fetches & formats wiki file metadata from Github
   useEffect(() => {
     const fetchWikis = async () => {
@@ -58,6 +76,8 @@ function Wiki() {
           (item: GithubResponseItem) =>
             item.path.includes("/") || item.type === "tree",
         );
+        
+        setArticleCounts(articleCount(filteredTree))
 
         filteredTree.forEach((item: GithubResponseItem) => {
           if (!item.type || !item.path) return;
@@ -125,7 +145,7 @@ function Wiki() {
                   checked={activeFilters.includes(folder)}
                   onChange={() => handleFilterChange(folder)}
                 />
-                <label className="pl-2"> {folder}</label>
+                <label className="pl-2"> {`${folder} [${articleCounts[folder]}]`} </label>
               </li>
             ))}
           </div>
