@@ -85,7 +85,6 @@ function Directory() {
   }, []);
 
   const copyEmails = async () => {
-    console.log("Copying emails");
     let emails = "";
     tmpUserData.forEach((user) => {
       emails += user.email + ", ";

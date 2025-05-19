@@ -7,8 +7,8 @@ import EmployeeDashboard from "./EmployeeDashboard";
 import Wiki from "./Wiki";
 import Directory from "./Directory/Directory";
 import WikiArticlePage from "./WikiArticlePage";
+import AdminPortal from "./admin/AdminPortal";
 import Layout from "./Layout";
-
 export const routes = [
   {
     element: <Layout />, // header lives here
@@ -24,6 +24,7 @@ export const routes = [
         path: "wikis/:wikiType/:wikiArticleName",
         element: <WikiArticlePage />,
       },
+      { path: "admin-portal", element: <AdminPortal /> },
     ],
   },
 ];

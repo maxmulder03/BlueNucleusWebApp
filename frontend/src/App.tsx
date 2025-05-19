@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { routes } from "./routes";
+import { useAuth } from "./FirebaseContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,6 +15,8 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter(routes);
 
 function App() {
+  const { user, isAdmin } = useAuth();
+
   return (
     <div className="flex flex-col h-screen min-h-0 mx-auto my-2 w-[95%]">
       <QueryClientProvider client={queryClient}>
@@ -29,7 +32,13 @@ __________.__                   _______                .__
           </pre>
           <pre className="m-0 text-sm text-end">
             <pre>© 2025 Blue Nucleus</pre>
-            <pre>user: max-mulder</pre>
+            <pre>
+              {user?.email
+                ? isAdmin
+                  ? user.email + " (Admin)"
+                  : ""
+                : "NO LOGGED IN USER"}
+            </pre>
             <pre>{new Date().toLocaleString()}</pre>
           </pre>
         </div>
