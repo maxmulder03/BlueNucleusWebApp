@@ -52,12 +52,6 @@ function Wiki() {
         const articleType = cur.path.substring(0, cur.path.indexOf("/"))
         
         acc[articleType] = (acc[articleType] || 0) + 1;
-        // if(articleType in acc){
-        //   acc[articleType] += 1
-        // }
-        // else {
-        //   acc[articleType] = 1
-        // }
       }
       return acc
     }, {})
