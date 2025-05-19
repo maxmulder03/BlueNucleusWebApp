@@ -24,7 +24,7 @@ function SignIn() {
       const firebaseError = error as { code?: string; message: string };
       setErrorMessage(
         AUTH_ERROR_MESSAGES[firebaseError.code ?? ""] ??
-        "Something went wrong. Please try again.",
+          "Something went wrong. Please try again.",
       );
     }
 
