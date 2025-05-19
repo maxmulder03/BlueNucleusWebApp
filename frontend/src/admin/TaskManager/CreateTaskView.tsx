@@ -33,6 +33,9 @@ function CreateTaskView() {
 
   const handleAssigneeKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab" && filteredNames.length > 0) {
+      if (attemptedAssignee && tmpEmployeeNames.includes(assigneeInput)) {
+        return;
+      }
       e.preventDefault();
       setAssigneeInput(filteredNames[0]); // autocomplete with the first match
       setAttemptedAssignee(true);
