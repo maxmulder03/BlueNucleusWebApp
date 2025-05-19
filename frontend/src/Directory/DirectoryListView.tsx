@@ -10,7 +10,9 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
 
   return (
     <div box-="round">
-      <div className={`grid ${getGridTemplateColumns(numFields)} gap-2 p-2`}>
+      <div
+        className={`grid ${getGridTemplateColumns(numFields)} gap-2 p-2 mb-2 border-b-[0.2ch] border-[var(--background2)] text-[var(--foreground2)]`}
+      >
         <div>Name</div>
         <div>Email</div>
         <div>Github Account</div>
