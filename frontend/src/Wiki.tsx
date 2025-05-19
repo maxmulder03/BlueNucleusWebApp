@@ -90,8 +90,6 @@ function Wiki() {
             const fileName = metadata.pop()?.split(".")[0];
             const folderName = metadata.pop();
             const articleData = articlesData.find((article: Article)  => article.name === fileName)
-            const authorName = articleData ? articleData.author : ""
-            const fileDate = articleData ? articleData.publishDate : ""
 
 
 
@@ -103,8 +101,8 @@ function Wiki() {
                   {
                     name: fileName,
                     type: folderName,
-                    author: authorName,
-                    publishDate: fileDate
+                    author: articleData ? articleData.author : "---",
+                    publishDate: articleData ? articleData.publishDate : "---"
                   },
                 ].filter(
                   (f, i, arr) => arr.findIndex((x) => x.name === f.name) === i,
@@ -179,7 +177,7 @@ function Wiki() {
           <h1 is-="badge" variant-="background0" className="pb-10">
             Wikis
           </h1>
-          <div className="grid grid-cols-[1fr_2fr_1fr_1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
+          <div className="grid grid-cols-[1fr_3fr_1fr_1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
             <div className="pb-1 border-b-[0.5px]"> DATE </div>
             <div className="pb-1 border-b-[0.5px]"> NAME </div>
             <div className="pb-1 border-b-[0.5px]"> AUTHOR </div>
@@ -189,7 +187,7 @@ function Wiki() {
             {filteredItems.map((item, idx) => (
               <div
                 key={idx}
-                className="m-0 pt-3 pb-3 p-1 list-none grid grid-cols-[1fr_2fr_1fr_1fr] border-b-[0.5px] items-center self-start text-left"
+                className="m-0 pt-3 pb-3 p-1 list-none grid grid-cols-[1fr_3fr_1fr_1fr] border-b-[0.5px] items-center self-start text-left"
               >
                 <div className="col-start-1">
                   {item.publishDate}
