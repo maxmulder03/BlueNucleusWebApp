@@ -11,7 +11,7 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
         <table className="w-full min-w-max table-fixed">
           <thead>
             <tr className="whitespace-nowrap">
-              <th className="sticky left-0 z-30 w-48 text-left p-2 border-b font-semibold bg-[var(--background0)]">
+              <th className="sticky left-0 z-30 w-48 text-left p-2 border-b font-semibold bg-[var(--background2)]">
                 Name
               </th>
               <th className="w-64 text-left p-2 border-b font-semibold">
@@ -34,7 +34,7 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
                 key={user.fullName + idx}
                 className="whitespace-nowrap"
               >
-                <td className="sticky left-0 z-20 p-2 border-b bg-[var(--background0)]">
+                <td className="sticky left-0 z-20 p-2 border-b bg-[var(--background2)]">
                   <div className="truncate pr-2" title={user.fullName}>
                     {user.fullName}
                   </div>
