@@ -72,14 +72,9 @@ function DirectoryCardView({ users }: DirectoryCardViewProps) {
                 </div>
 
                 
-                <div className="text-sm">
+                <div className="text-sm truncate" title={user.email}>
                   <span className="text-[var(--background3)]">email: </span>
-                  <span
-                    className="truncate"
-                    title={user.email}
-                  >
-                    {user.email}
-                  </span>
+                  {user.email}
                 </div>
 
                 <div
