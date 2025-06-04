@@ -5,13 +5,20 @@ function Wiki() {
   type WikiFile = {
     name: string;
     type: string;
-    publishDate?: string;
+    author:string;
+    publishDate: string;
   };
 
   type GithubResponseItem = {
     path: string;
     type: "blob" | "tree";
   };
+
+  type Article = {
+    name: string;
+    author: string;
+    publishDate: string
+  }
 
   const [files, setFiles] = useState<WikiFile[]>([]);
   const [folders, setFolders] = useState<string[]>([]);
@@ -33,6 +40,9 @@ function Wiki() {
 
   const wikiApiUrl =
     "https://api.github.com/repos/maxmulder03/BlueNucleusWiki/git/trees/main?recursive=1";
+  
+  const articleMetaDataUrl = 
+    "https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main/articles.json";
 
   const formattedName = (name: string) => {
     return name
@@ -49,15 +59,29 @@ function Wiki() {
   useEffect(() => {
     const fetchWikis = async () => {
       try {
-        const response = await fetch(wikiApiUrl);
-        const repoTree = await response.json();
-        if (!repoTree || !repoTree.tree) return;
+        const [response, metadataReponse] = await Promise.all([
+          fetch(wikiApiUrl),
+          fetch(articleMetaDataUrl)
+        ]);
 
+        const repoTree = await response.json();
+
+        let articlesData = []
+        try {
+          articlesData = await metadataReponse.json()
+        }
+        catch {
+          console.warn("No article metadata, proceeding without")
+        }
+
+        if (!repoTree || !repoTree.tree) return;
+        
         // Ignores root directory files
         const filteredTree = repoTree.tree.filter(
           (item: GithubResponseItem) =>
             item.path.includes("/") || item.type === "tree",
         );
+        
 
         filteredTree.forEach((item: GithubResponseItem) => {
           if (!item.type || !item.path) return;
@@ -65,6 +89,10 @@ function Wiki() {
             const metadata = item.path.split("/");
             const fileName = metadata.pop()?.split(".")[0];
             const folderName = metadata.pop();
+            const articleData = articlesData.find((article: Article)  => article.name === fileName)
+
+
+
             if (fileName && folderName) {
               // TODO: Rework deduplication logic, this isn't great
               setFiles((prev) =>
@@ -73,6 +101,8 @@ function Wiki() {
                   {
                     name: fileName,
                     type: folderName,
+                    author: articleData ? articleData.author : "---",
+                    publishDate: articleData ? articleData.publishDate : "---"
                   },
                 ].filter(
                   (f, i, arr) => arr.findIndex((x) => x.name === f.name) === i,
@@ -147,19 +177,20 @@ function Wiki() {
           <h1 is-="badge" variant-="background0" className="pb-10">
             Wikis
           </h1>
-          <div className="grid grid-cols-[1fr_3fr_1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
+          <div className="grid grid-cols-[1fr_3fr_1fr_1fr] pl-4 pr-4 pt-2 items-center self-start text-left">
             <div className="pb-1 border-b-[0.5px]"> DATE </div>
             <div className="pb-1 border-b-[0.5px]"> NAME </div>
+            <div className="pb-1 border-b-[0.5px]"> AUTHOR </div>
             <div className="pb-1 border-b-[0.5px] text-center pr-2">TYPE</div>
           </div>
           <div className="p-4 pb-10 pt-0">
             {filteredItems.map((item, idx) => (
               <div
                 key={idx}
-                className="m-0 pt-3 pb-3 p-1 list-none grid grid-cols-[1fr_3fr_1fr] border-b-[0.5px] items-center self-start text-left"
+                className="m-0 pt-3 pb-3 p-1 list-none grid grid-cols-[1fr_3fr_1fr_1fr] border-b-[0.5px] items-center self-start text-left"
               >
                 <div className="col-start-1">
-                  {item.publishDate ?? "09.09.2022"}
+                  {item.publishDate}
                 </div>
 
                 <Link
@@ -169,7 +200,11 @@ function Wiki() {
                   {formattedName(item.name)}
                 </Link>
 
-                <div className="col-start-3 text-center">
+                <div className="col-start-3">
+                  <p>{item.author}</p>
+                </div>
+
+                <div className="col-start-4 text-center">
                   <span is-="badge" variant-={getBadgeColor(item.type)}>
                     {item.type.toUpperCase()}
                   </span>
