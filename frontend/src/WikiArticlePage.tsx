@@ -105,7 +105,7 @@ function WikiArticlePage() {
             &nbsp;{wikiArticleName}
           </h1>
           <div className="grid grid-cols-12">
-            <div className="p-8 col-start-1 col-end-9 overflow-y-scroll">
+            <div className="p-8 col-start-1 col-end-9 overflow-y-scroll h-150">
               <Markdown
                 components={{
                   h1: () => {
