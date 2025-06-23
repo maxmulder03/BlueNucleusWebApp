@@ -48,7 +48,7 @@ function ViewTask() {
           {Object.keys(exampleEmployeeNames).map((name) => (
             <div key={name} className="flex flex-row justify-start p-2">
               {/* TODO: clickable div is bad practive, switch to button & override webtui button styles */}
-              <div
+              <button
                 onClick={() => {
                   setFocused(onFocusChange(name));
                 }}
@@ -62,7 +62,7 @@ function ViewTask() {
               >
                 {" "}
                 {name}
-              </div>
+              </button>
             </div>
           ))}
         </div>
