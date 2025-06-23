@@ -47,7 +47,7 @@ function ViewTask() {
         <div className="border-r-[0.2ch] border-[var(--background2)]">
           {Object.keys(exampleEmployeeNames).map((name) => (
             <div key={name} className="flex flex-row justify-start p-2">
-              {/* TODO: clickable div is bad practive, switch to button & override webtui button styles */}
+              {/* TODO: Override webtui button styles */}
               <button
                 onClick={() => {
                   setFocused(onFocusChange(name));
