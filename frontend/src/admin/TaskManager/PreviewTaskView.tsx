@@ -66,7 +66,9 @@ function ViewTask() {
           ))}
         </div>
         <div className="">
-          {exampleEmployeeNames[focused].map((task) => (
+          {exampleEmployeeNames[
+            focused as keyof typeof exampleEmployeeNames
+          ].map((task) => (
             <div
               key={task.taskName}
               className="flex flex-row justify-start p-2 gap-2"
