@@ -5,7 +5,9 @@
 @import "tailwindcss";
 
 html,
-body,
+body{
+  overflow-y: hidden;
+}
 #root {
   height: 100%;
   min-height: 0;
