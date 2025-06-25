@@ -103,7 +103,7 @@ function Directory() {
       fullName: "Nathan Katzman",
       email: "katzmann@mail.gvsu.edu",
       githubUsername: "Katzmann835",
-      employeeType: "Graduate", //I just graduated, is it possible to create an Allumni category?
+      employeeType: "Graduate",
       activeEmployee: true,
     },
   ];

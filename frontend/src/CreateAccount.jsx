@@ -45,7 +45,7 @@ function CreateAccount({ onAccountCreation }) {
 
       if (response.ok) {
         const createdUser = await response.json();
-        onAccountCreation(createdUser); //Would the user be created with an account?
+        onAccountCreation();
         setTimeout(() => {
           navigate("/sign-in");
         }, 300000);
