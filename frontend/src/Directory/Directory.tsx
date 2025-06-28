@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DirectoryCardView from "./DirectoryCardView";
 import DirectoryListView from "./DirectoryListView";
 import { User } from "../types/User";
+import styles from "./direct.module.css";
 
 function Directory() {
   const [users, setUsers] = useState([]);
@@ -124,6 +125,14 @@ function Directory() {
       }
     };
     fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.add(styles.wikipages);
+
+    return () => {
+      document.body.classList.remove(styles.wikipages);
+    };
   }, []);
 
   const copyEmails = async () => {
