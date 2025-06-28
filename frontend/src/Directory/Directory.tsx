@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DirectoryCardView from "./DirectoryCardView";
 import DirectoryListView from "./DirectoryListView";
 import { User } from "../types/User";
+import styles from "./direct.module.css";
 
 function Directory() {
   const [users, setUsers] = useState([]);
@@ -99,6 +100,13 @@ function Directory() {
       employeeType: "Graduate",
       activeEmployee: true,
     },
+    {
+      fullName: "Nathan Katzman",
+      email: "katzmann@mail.gvsu.edu",
+      githubUsername: "Katzmann835",
+      employeeType: "Graduate",
+      activeEmployee: true,
+    },
   ];
 
   useEffect(() => {
@@ -119,6 +127,14 @@ function Directory() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    document.body.classList.add(styles.wikipages);
+
+    return () => {
+      document.body.classList.remove(styles.wikipages);
+    };
+  }, []);
+
   const copyEmails = async () => {
     let emails = "";
     tmpUserData.forEach((user) => {
@@ -136,7 +152,7 @@ function Directory() {
     <>
       <h1 className="pb-3">Directory</h1>
 
-      <div box-="round contain:!top" className="">
+      <div box-="round" shear-="top" className="">
         <div is-="badge" variant-="background0">
           Actions
         </div>
