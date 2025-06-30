@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEfffect, useState } from "react";
+import styles from "./Task.module.css";
 
 function ViewTask() {
   const [focused, setFocused] = useState<string>("");
@@ -49,6 +50,7 @@ function ViewTask() {
             <div key={name} className="flex flex-row justify-start p-2">
               <button
                 variant-="background0"
+                size-="small"
                 onClick={() => {
                   setFocused(String(onFocusChange(name)));
                 }}
