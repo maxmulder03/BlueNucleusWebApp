@@ -150,7 +150,7 @@ function Directory() {
 
   return (
     <>
-      <body className="pb-6">
+      <div className="pb-10">
         <h1 className="pb-3">Directory</h1>
 
         <div box-="round" shear-="top" className="">
@@ -178,7 +178,7 @@ function Directory() {
         ) : (
           <DirectoryCardView users={tmpUserData} />
         )}
-      </body>
+      </div>
     </>
   );
 }
