@@ -1,5 +1,4 @@
-import { useEfffect, useState } from "react";
-import styles from "./Task.module.css";
+import { useState } from "react";
 
 function ViewTask() {
   const [focused, setFocused] = useState<string>("");
