@@ -48,6 +48,7 @@ function ViewTask() {
           {Object.keys(exampleEmployeeNames).map((name) => (
             <div key={name} className="flex flex-row justify-start p-2">
               <button
+                variant-="background0"
                 onClick={() => {
                   setFocused(String(onFocusChange(name)));
                 }}

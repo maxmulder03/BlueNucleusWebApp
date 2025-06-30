@@ -150,33 +150,35 @@ function Directory() {
 
   return (
     <>
-      <h1 className="pb-3">Directory</h1>
+      <body className="pb-6">
+        <h1 className="pb-3">Directory</h1>
 
-      <div box-="round" shear-="top" className="">
-        <div is-="badge" variant-="background0">
-          Actions
+        <div box-="round" shear-="top" className="">
+          <div is-="badge" variant-="background0">
+            Actions
+          </div>
+
+          <div>
+            <button className="ml-3 mt-2 mb-2 h-[80%]" onClick={copyEmails}>
+              Copy All Emails
+            </button>
+
+            <button
+              variant-="background2"
+              className="ml-3 mt-2 mb-2 h-[80%]"
+              onClick={() => setListView(!listView)}
+            >
+              {listView ? "Toggle Card View" : "Toggle List View"}
+            </button>
+          </div>
         </div>
 
-        <div>
-          <button className="ml-3 mt-2 mb-2 h-[80%]" onClick={copyEmails}>
-            Copy All Emails
-          </button>
-
-          <button
-            variant-="background2"
-            className="ml-3 mt-2 mb-2 h-[80%]"
-            onClick={() => setListView(!listView)}
-          >
-            {listView ? "Toggle Card View" : "Toggle List View"}
-          </button>
-        </div>
-      </div>
-
-      {listView ? (
-        <DirectoryListView users={tmpUserData} />
-      ) : (
-        <DirectoryCardView users={tmpUserData} />
-      )}
+        {listView ? (
+          <DirectoryListView users={tmpUserData} />
+        ) : (
+          <DirectoryCardView users={tmpUserData} />
+        )}
+      </body>
     </>
   );
 }
