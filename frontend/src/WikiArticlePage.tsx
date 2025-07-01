@@ -96,7 +96,7 @@ function WikiArticlePage() {
 
   return (
     <>
-      {/* Wiki Article Grid*/}
+      {/* Wiki Article Grid */}
       <div className="grid grid-cols-12 w-full h-full auto-rows-fr min-h-0 pb-16">
         {/* Table of Contents */}
         <div
