@@ -134,7 +134,6 @@ function CreateAccount({ onAccountCreation }) {
           </div>
         </div>
       </div>
-      );
     </>
   );
 }
