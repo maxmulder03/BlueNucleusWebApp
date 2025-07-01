@@ -11,7 +11,6 @@ function DirectoryCardView({ users }: DirectoryCardViewProps) {
       {users.map((user, idx) => (
         <div
           box-="round"
-          shear-="none"
           className={`col-start-${idx * 4 + 1} col-span-4 h-full`}
           key={user.fullName}
         >
