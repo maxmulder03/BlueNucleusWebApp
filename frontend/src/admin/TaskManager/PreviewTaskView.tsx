@@ -55,7 +55,7 @@ function ViewTask() {
                 }}
                 className={
                   focused === name
-                    ? "text-[var(--green)]"
+                    ? "text-[var(--green)] bg-[var(--background0)] button-[var(--background0)] no-underline"
                     : focused === ""
                       ? ""
                       : "text-[var(--foreground2)]"
