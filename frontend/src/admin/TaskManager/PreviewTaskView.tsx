@@ -58,7 +58,7 @@ function ViewTask() {
                     ? "text-[var(--green)] bg-[var(--background0)] button-[var(--background0)] no-underline"
                     : focused === ""
                       ? ""
-                      : "text-[var(--foreground2)]"
+                      : "text-[var(--foreground2)] no-underline"
                 }
               >
                 {" "}
