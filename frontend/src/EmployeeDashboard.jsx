@@ -2,6 +2,7 @@ import { auth, db } from "./FirebaseApp";
 import { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
+//TODO: What needs to be added to the dashboard page?
 function DashboardItem({ title, text }) {
   return (
     <div>

@@ -98,3 +98,4 @@ function CreateTaskView() {
 }
 
 export default CreateTaskView;
+//TODO: Need to create a submit button when the user is done creating the task
