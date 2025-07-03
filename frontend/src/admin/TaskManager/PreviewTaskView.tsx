@@ -48,7 +48,6 @@ function ViewTask() {
   return (
     <div className="ml-3 mr-3 pb-2">
       {/* TODO: update focused to clear when user clicks away from component */}
-      {/* TODO: Need to fix the button so background border does not change color */}
       <div className="grid grid-cols-[1fr_4fr] gap-2 pl-2">
         <div className="border-r-[0.2ch] border-[var(--background2)]">
           {Object.keys(exampleEmployeeNames).map((name) => (
