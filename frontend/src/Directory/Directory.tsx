@@ -7,7 +7,7 @@ import styles from "./direct.module.css";
 function Directory() {
   const [users, setUsers] = useState([]);
   const [listView, setListView] = useState(false);
-  //TODO: See if anyone else can be added, find remaining github usernames and add it to the code
+  //TODO: See if anyone else can be added, find remaining github usernames and add it to the code if possible
   const tmpUserData: User[] = [
     {
       fullName: "Max Mulder",
@@ -33,7 +33,7 @@ function Directory() {
     {
       fullName: "Hans Dulimarta",
       email: "dulimarh@gvsu.edu",
-      githubUsername: "",
+      githubUsername: "", //Github username TBA
       employeeType: "Admin",
       activeEmployee: true,
     },
@@ -89,14 +89,14 @@ function Directory() {
     {
       fullName: "Collin Brennan",
       email: "brenncol@mail.gvsu.edu",
-      githubUsername: "",
+      githubUsername: "", //Github username TBA
       employeeType: "Undergraduate",
       activeEmployee: true,
     },
     {
       fullName: "Muttaki Bismoy",
       email: "bismoym@mail.gvsu.edu",
-      githubUsername: "",
+      githubUsername: "", //Github username TBA
       employeeType: "Graduate",
       activeEmployee: true,
     },
@@ -110,7 +110,7 @@ function Directory() {
     {
       fullName: "Malek Garrach",
       email: "garrach@gvsu.edu",
-      githubUsername: "",
+      githubUsername: "", //Github username TBA
       employeeType: "Graduate",
       activeEmployee: true,
     },
