@@ -64,7 +64,7 @@ function CreateAccount({ onAccountCreation }) {
     <>
       <div className="overflow-y-hidden">
         <h1 className="MyTitle">Create An Account</h1>
-        <div className="flex flex-col justify-center items-center h-full translate-y-[-10%]">
+        <div className="flex flex-col justify-center items-center h-full translate-y-[-10%] p-30">
           <div box-="round" shear-="top" className="pr-10 pb-10 pb-4">
             <h1 is-="badge" variant-="background0">
               {" "}
@@ -141,4 +141,3 @@ function CreateAccount({ onAccountCreation }) {
 }
 
 export default CreateAccount;
-//TODO: Will need to fix scrolling issue for the Create Account page
