@@ -6,8 +6,7 @@ interface DirectoryCardViewProps {
 }
 
 function DirectoryCardView({ users }: DirectoryCardViewProps) {
-  //TODO:Need to create a server such that it stores pictures for each user
-  //TODO:Also need to add current projects and Github accounts if needed
+  //TODO: Need to create a server such that it stores pictures for each user
   return (
     <div className="grid grid-cols-12 grid-rows-4 h-full pt-4">
       {users.map((user, idx) => (
