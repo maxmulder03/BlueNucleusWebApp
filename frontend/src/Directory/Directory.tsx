@@ -112,7 +112,7 @@ function Directory() {
       email: "garrach@gvsu.edu",
       githubUsername: "", //Github username TBA
       employeeType: "Graduate",
-      activeEmployee: true,
+      activeEmployee: false,
     },
     {
       fullName: "Nathan Katzman",

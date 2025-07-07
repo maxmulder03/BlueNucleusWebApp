@@ -39,7 +39,7 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
           >
             {user.employeeType}
           </div>
-          <div> {user.activeEmployee} </div>
+          <div> {user.activeEmployee ? "Active" : "Inactive"} </div>
         </div>
       ))}
     </div>
@@ -47,5 +47,4 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
 }
 
 export default DirectoryListView;
-//TODO: Is Active supposed to be its own column or a part of Active Employee Type?
 //TODO: Also, is it possible to create a new badge for Allumni adding to the current Graduate, Undergraduate and Admin?
