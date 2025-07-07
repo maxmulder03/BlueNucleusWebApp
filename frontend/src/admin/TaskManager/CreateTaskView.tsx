@@ -92,6 +92,10 @@ function CreateTaskView() {
           className="w-[50%] h-[50pt] bg-[var(--background1)] focus:outline-none"
           id="description"
         />
+        {/*<button variant-="background0" size-="small">
+          Submit
+        </button>
+        What should the button look like on submit?*/}
       </form>
     </div>
   );
