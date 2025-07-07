@@ -6,11 +6,12 @@ interface DirectoryCardViewProps {
 }
 
 function DirectoryCardView({ users }: DirectoryCardViewProps) {
+  //TODO: Need to create a server such that it stores pictures for each user
   return (
     <div className="grid grid-cols-12 grid-rows-4 h-full pt-4">
       {users.map((user, idx) => (
         <div
-          box-="round contain:none"
+          box-="round"
           className={`col-start-${idx * 4 + 1} col-span-4 h-full`}
           key={user.fullName}
         >

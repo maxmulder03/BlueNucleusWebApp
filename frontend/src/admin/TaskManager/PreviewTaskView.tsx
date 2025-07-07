@@ -1,4 +1,9 @@
 import { useState } from "react";
+import styles from "./Click.module.css";
+
+const Click = () => {
+  return <div className={styles.header}></div>;
+};
 
 function ViewTask() {
   const [focused, setFocused] = useState<string>("");
@@ -47,27 +52,30 @@ function ViewTask() {
         <div className="border-r-[0.2ch] border-[var(--background2)]">
           {Object.keys(exampleEmployeeNames).map((name) => (
             <div key={name} className="flex flex-row justify-start p-2">
-              {/* TODO: clickable div is bad practive, switch to button & override webtui button styles */}
-              <div
+              <button
+                variant-="background0"
+                size-="small"
                 onClick={() => {
-                  setFocused(onFocusChange(name));
+                  setFocused(String(onFocusChange(name)));
                 }}
                 className={
                   focused === name
-                    ? "text-[var(--green)]"
+                    ? "text-[var(--green)] bg-[var(--background0)] button-[var(--background0)] no-underline"
                     : focused === ""
-                      ? ""
-                      : "text-[var(--foreground2)]"
+                      ? "no-underline bg-[var(--background0)] text-[var(--foreground0)]"
+                      : "text-[var(--foreground2)] bg-[var(--background0)] no-underline"
                 }
               >
                 {" "}
                 {name}
-              </div>
+              </button>
             </div>
           ))}
         </div>
         <div className="">
-          {exampleEmployeeNames[focused].map((task) => (
+          {exampleEmployeeNames[
+            focused as keyof typeof exampleEmployeeNames
+          ].map((task) => (
             <div
               key={task.taskName}
               className="flex flex-row justify-start p-2 gap-2"
