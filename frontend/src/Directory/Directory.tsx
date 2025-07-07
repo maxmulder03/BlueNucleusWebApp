@@ -7,7 +7,6 @@ import styles from "./direct.module.css";
 function Directory() {
   const [users, setUsers] = useState([]);
   const [listView, setListView] = useState(false);
-  //TODO: See if anyone else can be added, find remaining github usernames and add it to the code if possible
   const tmpUserData: User[] = [
     {
       fullName: "Max Mulder",

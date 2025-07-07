@@ -94,13 +94,12 @@ function CreateTaskView() {
         />
         {/*<button variant-="background0" size-="small">
           Submit
-        </button>
-        What should the button look like on submit?*/}
+        </button>*/}
       </form>
     </div>
   );
 }
 
 export default CreateTaskView;
-/* TODO: Need to create a submit button when the user is done creating the task
+/* TODO: Need to create a submit button when the user is done creating the task, what should button look like?
 Also, where should the submit button take the user once submitted? */
