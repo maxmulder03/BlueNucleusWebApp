@@ -98,5 +98,5 @@ function CreateTaskView() {
 }
 
 export default CreateTaskView;
-/*TODO: Need to create a submit button when the user is done creating the task
+/* TODO: Need to create a submit button when the user is done creating the task
 Also, where should the submit button take the user once submitted? */
