@@ -92,14 +92,16 @@ function CreateTaskView() {
           className="w-[50%] h-[50pt] bg-[var(--background1)] focus:outline-none"
           id="description"
         />
-        {/*<button variant-="background0" size-="small">
+        <button
+          variant-="background0"
+          size-="small"
+          className="flex justify-start bg-[var(--background0)] text-[var(--foreground0)] no-underline"
+        >
           Submit
-        </button>*/}
+        </button>
       </form>
     </div>
   );
 }
 
 export default CreateTaskView;
-/* TODO: Need to create a submit button when the user is done creating the task, what should button look like?
-Also, where should the submit button take the user once submitted? */
