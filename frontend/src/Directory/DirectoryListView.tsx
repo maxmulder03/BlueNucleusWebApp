@@ -47,4 +47,3 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
 }
 
 export default DirectoryListView;
-//TODO: Also, is it possible to create a new badge for Allumni adding to the current Graduate, Undergraduate and Admin?
