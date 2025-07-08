@@ -110,7 +110,7 @@ function Directory() {
       fullName: "Nathan Katzman",
       email: "katzmann@mail.gvsu.edu",
       githubUsername: "Katzmann835",
-      employeeType: "Graduate",
+      employeeType: "Admin",
       activeEmployee: true,
     },
   ];
