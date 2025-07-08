@@ -159,7 +159,7 @@ function Directory() {
       <div className="pb-10">
         <h1 className="pb-3">Directory</h1>
 
-        <div box-="round" shear-="top" className="">
+        <div box-="round contain:!top" className="">
           <div is-="badge" variant-="background0">
             Actions
           </div>
