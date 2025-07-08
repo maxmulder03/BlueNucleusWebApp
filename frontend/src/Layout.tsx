@@ -72,6 +72,14 @@ function Header() {
       >
         Admin Portal
       </NavLink>
+      <NavLink
+        to="/"
+        is-="badge"
+        variant-="background1"
+        className="ml-2 pt-2 pb-2 items-center"
+      >
+        Logout
+      </NavLink>
     </header>
   );
 }
