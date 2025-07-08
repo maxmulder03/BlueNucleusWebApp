@@ -109,8 +109,7 @@ function WikiArticlePage() {
           </span>
         </div>
         <div
-          box-="square"
-          shear-="top"
+          box-="square contain:!top"
           className="col-start-3 col-end-13 h-full"
         >
           <h1 is-="badge" variant-="background0">
