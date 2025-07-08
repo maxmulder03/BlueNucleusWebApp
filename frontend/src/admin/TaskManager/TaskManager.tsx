@@ -16,7 +16,7 @@ function TaskManager() {
 
   return (
     <>
-      <div box-="round" shear-="top" className="mt-4">
+      <div box-="round contain:!top" className="mt-4">
         <div is-="badge" variant-="background0">
           Employee Tasks
         </div>
