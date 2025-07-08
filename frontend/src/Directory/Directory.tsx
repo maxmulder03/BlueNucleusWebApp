@@ -81,14 +81,14 @@ function Directory() {
     {
       fullName: "Collin Brennan",
       email: "brenncol@mail.gvsu.edu",
-      githubUsername: "", //Github username TBA
+      githubUsername: "",
       employeeType: "Undergraduate",
       activeEmployee: true,
     },
     {
       fullName: "Muttaki Bismoy",
       email: "bismoym@mail.gvsu.edu",
-      githubUsername: "", //Github username TBA
+      githubUsername: "",
       employeeType: "Graduate",
       activeEmployee: true,
     },
@@ -102,7 +102,7 @@ function Directory() {
     {
       fullName: "Malek Garrach",
       email: "garrach@gvsu.edu",
-      githubUsername: "", //Github username TBA
+      githubUsername: "",
       employeeType: "Graduate",
       activeEmployee: false,
     },
