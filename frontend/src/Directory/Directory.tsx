@@ -32,14 +32,14 @@ function Directory() {
     {
       fullName: "Hans Dulimarta",
       email: "dulimarh@gvsu.edu",
-      githubUsername: "", //Github username TBA
+      githubUsername: "",
       employeeType: "Admin",
       activeEmployee: true,
     },
     {
       fullName: "Brock Thane",
       email: "thanebr@gvsu.edu",
-      githubUsername: "", //Github username TBA
+      githubUsername: "",
       employeeType: "Admin",
       activeEmployee: true,
     },
