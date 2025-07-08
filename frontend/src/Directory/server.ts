@@ -12,3 +12,6 @@ app.use(
 app.listen(port, () => {
   console.log(`Image server listening at http://localhost:${port}`);
 });
+//TODO: Need to modify server based on code specifications
+/*TODO: Need to integrate this into directory card page for images to
+appear instead of a blank grey box.*/
