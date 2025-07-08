@@ -25,7 +25,7 @@ export const routes = [
         element: <WikiArticlePage />,
       },
       { path: "admin-portal", element: <AdminPortal /> },
-      { path: "logout", element: <Home />}
+      { path: "logout", element: <Home /> },
     ],
   },
 ];
