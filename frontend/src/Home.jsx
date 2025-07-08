@@ -13,7 +13,7 @@ function Home() {
     <>
       <h1> Blue Nucleus </h1>
 
-      <div className="NavButtonGrid">
+      <div className="NavButtonGrid space-x-5">
         <NavButton location="/onboarding" text="Onboarding" idx="one" />
         <NavButton location="/wiki" text="Internal Wiki" idx="two" />
         <NavButton location="/dashboard" text="Student Dashboard" idx="three" />
@@ -23,7 +23,7 @@ function Home() {
           text="Create Account"
           idx="five"
         />
-        <NavButton location="/tmp" text="Admin Dashboard" idx="six" />
+        <NavButton location="/admin-portal" text="Admin Dashboard" idx="six" />
         <NavButton location="/directory" text="Directory" idx="seven" />
       </div>
     </>

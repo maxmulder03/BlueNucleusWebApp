@@ -92,6 +92,13 @@ function CreateTaskView() {
           className="w-[50%] h-[50pt] bg-[var(--background1)] focus:outline-none"
           id="description"
         />
+        <button
+          variant-="background0"
+          size-="small"
+          className="flex justify-start bg-[var(--background0)] text-[var(--foreground0)] no-underline"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

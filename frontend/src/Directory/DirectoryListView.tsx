@@ -39,7 +39,7 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
           >
             {user.employeeType}
           </div>
-          <div> {user.activeEmployee} </div>
+          <div> {user.activeEmployee ? "Active" : "Inactive"} </div>
         </div>
       ))}
     </div>
