@@ -113,6 +113,13 @@ function Directory() {
       employeeType: "Admin",
       activeEmployee: true,
     },
+    {
+      fullName: "Rajvardhan Patil",
+      email: "",
+      githubUsername: "",
+      employeeType: "Admin",
+      activeEmployee: true,
+    },
   ];
 
   useEffect(() => {
