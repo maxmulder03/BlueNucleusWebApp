@@ -11,12 +11,10 @@ body,
   min-height: 0;
 }
 
-div,
-header {
+div {
     --box-border-color: var(--background1);
 
     &:focus-within {
         --box-border-color: var(--background1);
     }
 }
-
