@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./newbox.css";
+import "./seperator.css";
 import App from "./App";
 import { FirebaseProvider } from "./FirebaseContext";
 import "@fontsource/inter";

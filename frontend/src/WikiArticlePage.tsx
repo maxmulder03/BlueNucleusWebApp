@@ -100,7 +100,8 @@ function WikiArticlePage() {
       <div className="grid grid-cols-12 w-full h-full auto-rows-fr min-h-0 pb-16">
         {/* Table of Contents */}
         <div
-          box-="square" shear-="top"
+          box-="square"
+          shear-="top"
           className="col-start-1 col-end-3 h-full"
         >
           <span is-="badge" variant-="background0" className="pb-10">
@@ -108,7 +109,8 @@ function WikiArticlePage() {
           </span>
         </div>
         <div
-          box-="square" shear-="top"
+          box-="square"
+          shear-="top"
           className="col-start-3 col-end-13 h-full"
         >
           <h1 is-="badge" variant-="background0">
