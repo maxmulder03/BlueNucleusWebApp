@@ -1,9 +1,9 @@
 import { useState } from "react";
-//import styles from "./Click.module.css";
+import styles from "./Click.module.css";
 
-/*const Click = () => {
+const Click = () => {
   return <div className={styles.header}></div>;
-};*/
+};
 
 function ViewTask() {
   const [focused, setFocused] = useState<string>("");
