@@ -149,7 +149,7 @@ function Wiki() {
     <>
       {/* Filters Section */}
       <div className="grid grid-cols-[1fr_3fr] items-start justify-center">
-        <div className="w-full" box-="square contain:!top">
+        <div className="w-full" box-="square" shear-="top">
           <span is-="badge" variant-="background1" className="pb-6">
             Filters
           </span>
@@ -180,7 +180,7 @@ function Wiki() {
         </div>
 
         {/* Wiki Files */}
-        <div className="w-full" box-="square contain:!top">
+        <div className="w-full" box-="square" shear-="top">
           <h1 is-="badge" variant-="background0" className="pb-10">
             Wikis
           </h1>
