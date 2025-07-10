@@ -13,10 +13,9 @@ body,
 
 div,
 .mt-4 {
+  --box-border-color: var(--background1);
+
+  &:focus-within {
     --box-border-color: var(--background1);
-
-    &:focus-within {
-        --box-border-color: var(--background1);
-    }
+  }
 }
-
