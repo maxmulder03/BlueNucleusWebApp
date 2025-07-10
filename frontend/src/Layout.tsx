@@ -72,6 +72,14 @@ function Header() {
       >
         Admin Portal
       </NavLink>
+      <NavLink
+        to="/"
+        is-="badge"
+        variant-="background1"
+        className="ml-2 pt-2 pb-2 items-center"
+      >
+        Logout
+      </NavLink>
     </header>
   );
 }
@@ -80,7 +88,7 @@ export default function Layout() {
   return (
     <div className="flex flex-col h-screen min-h-0 mx-auto w-[95%]">
       <Header />
-      <main className="flex-1 min-h-0 overflow-hidden">
+      <main className="flex-1 min-h-0 overflow-auto">
         <Outlet />
       </main>
     </div>

@@ -38,7 +38,7 @@ public class FireBaseAuth {
     String token = null;
 
     try {
-      URL url = new URL(BASE_URL+OPERATION_AUTH+"?key="+firebaseKey);
+      URL url = new uri.toURL(BASE_URL+OPERATION_AUTH+"?key="+firebaseKey);
       urlRequest = (HttpURLConnection) url.openConnection();
 
       urlRequest.setDoOutput(true);
@@ -69,7 +69,7 @@ public class FireBaseAuth {
     HttpURLConnection urlRequest = null;
     String email = null;
     try {
-      URL url = new URL(BASE_URL+OPERATION_ACCOUNT_INFO+"?key="+firebaseKey);
+      URL url = new uri.toURL(BASE_URL+OPERATION_ACCOUNT_INFO+"?key="+firebaseKey);
       urlRequest = (HttpURLConnection) url.openConnection();
       urlRequest.setDoOutput(true);
       urlRequest.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
