@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Click.module.css";
 
 const Click = () => {
-  return <div className={styles.header}></div>;
+  return <div className={styles.mt}></div>;
 };
 
 function ViewTask() {

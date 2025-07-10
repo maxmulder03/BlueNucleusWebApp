@@ -12,7 +12,7 @@ body,
 }
 
 div,
-header {
+.mt-4 {
     --box-border-color: var(--background1);
 
     &:focus-within {
