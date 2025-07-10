@@ -96,3 +96,4 @@ function OnboardingPage() {
 }
 
 export default OnboardingPage;
+//TODO: Should there be an select all and delete all functionality?
