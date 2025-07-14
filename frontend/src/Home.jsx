@@ -25,6 +25,11 @@ function Home() {
         />
         <NavButton location="/admin-portal" text="Admin Dashboard" idx="six" />
         <NavButton location="/directory" text="Directory" idx="seven" />
+        <NavButton
+          location="/onboarding-list"
+          text="Onboarding-list"
+          idx="eight"
+        />
       </div>
     </>
   );

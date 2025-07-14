@@ -14,6 +14,7 @@ export const routes = [
     element: <Layout />, // header lives here
     children: [
       { index: true, element: <Home /> },
+      { path: "onboarding-list", element: <OnboardingList /> },
       { path: "onboarding", element: <OnboardingPage /> },
       { path: "create-account", element: <CreateAccountWrapper /> },
       { path: "sign-in", element: <SignIn /> },
