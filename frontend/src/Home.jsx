@@ -27,7 +27,7 @@ function Home() {
         <NavButton location="/directory" text="Directory" idx="seven" />
         <NavButton
           location="/onboarding-list"
-          text="Onboarding-list"
+          text="Onboarding list"
           idx="eight"
         />
       </div>
