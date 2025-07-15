@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula as codeTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
+import styles from "./disable.module.css";
 
 interface Heading {
   type: string;
@@ -45,6 +46,14 @@ function WikiArticlePage() {
         return <h6 className="pl-13 pb-1 pr-2 truncate">{headingContent}</h6>;
     }
   };
+
+  useEffect(() => {
+    document.body.classList.add(styles.wikipages);
+
+    return () => {
+      document.body.classList.remove(styles.wikipages);
+    };
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -105,60 +114,62 @@ function WikiArticlePage() {
             &nbsp;{wikiArticleName}
           </h1>
           <div className="grid grid-cols-12">
-            <div className="p-8 col-start-1 col-end-9 overflow-y-scroll">
-              <Markdown
-                components={{
-                  h1: () => {
-                    return <div className="hidden"></div>;
-                  },
-                  h2: ({ ...props }) => {
-                    updateHeadings(props.children, "h2");
-                    return <h2 className="pt-2 pb-2" {...props} />;
-                  },
-                  h3: ({ ...props }) => {
-                    updateHeadings(props.children, "h3");
-                    return <h3 className="pt-2 pb-2" {...props} />;
-                  },
-                  h4: ({ ...props }) => {
-                    updateHeadings(props.children, "h4");
-                    return <h4 className="pt-2 pb-2" {...props} />;
-                  },
-                  h5: ({ ...props }) => {
-                    updateHeadings(props.children, "h5");
-                    return <h5 className="pt-2 pb-2" {...props} />;
-                  },
-                  h6: ({ ...props }) => {
-                    updateHeadings(props.children, "h6");
-                    return <h6 className="pt-2 pb-2" {...props} />;
-                  },
-                  p: ({ ...props }) => {
-                    return <p className="pb-[2ch]" {...props} />;
-                  },
-                  ul: ({ ...props }) => {
-                    return <ul className="pb-[2ch]" {...props} />;
-                  },
-                  code(props) {
-                    const { children, className, ...rest } = props;
-                    const match = /language-(\w+)/.exec(className || "");
-                    return match ? (
-                      <SyntaxHighlighter
-                        {...rest}
-                        PreTag="div"
-                        language={match[1]}
-                        style={codeTheme}
-                      >
-                        {String(children).replace(/\n$/, "")}
-                      </SyntaxHighlighter>
-                    ) : (
-                      <code {...rest} className={className}>
-                        {children}
-                      </code>
-                    );
-                  },
-                }}
-              >
-                {markdownContent}
-              </Markdown>
+            <div className="p-8 col-start-1 col-end-9 overflow-y-scroll h-170">
+              <div className="h-full">
+                <Markdown
+                  components={{
+                    h1: () => {
+                      return <div className="hidden"></div>;
+                    },
+                    h2: ({ ...props }) => {
+                      updateHeadings(props.children, "h2");
+                      return <h2 className="pt-2 pb-2" {...props} />;
+                    },
+                    h3: ({ ...props }) => {
+                      updateHeadings(props.children, "h3");
+                      return <h3 className="pt-2 pb-2" {...props} />;
+                    },
+                    h4: ({ ...props }) => {
+                      updateHeadings(props.children, "h4");
+                      return <h4 className="pt-2 pb-2" {...props} />;
+                    },
+                    h5: ({ ...props }) => {
+                      updateHeadings(props.children, "h5");
+                      return <h5 className="pt-2 pb-2" {...props} />;
+                    },
+                    h6: ({ ...props }) => {
+                      updateHeadings(props.children, "h6");
+                      return <h6 className="pt-2 pb-2" {...props} />;
+                    },
+                    p: ({ ...props }) => {
+                      return <p className="pb-[2ch]" {...props} />;
+                    },
+                    ul: ({ ...props }) => {
+                      return <ul className="pb-[2ch]" {...props} />;
+                    },
+                    code(props) {
+                      const { children, className, ...rest } = props;
+                      const match = /language-(\w+)/.exec(className || "");
+                      return match ? (
+                        <SyntaxHighlighter
+                          {...rest}
+                          PreTag="div"
+                          language={match[1]}
+                          style={codeTheme}
+                        >
+                          {String(children).replace(/\n$/, "")}
+                        </SyntaxHighlighter>
+                      ) : (
+                        <code {...rest} className={className}>
+                          {children}
+                        </code>
+                      );
+                    },
+                  }}
+                >
+                  {markdownContent}
+                </Markdown>
+              </div>
             </div>
             <div
               className="

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import styles from "./disable.module.css";
 
 function Wiki() {
   type WikiFile = {
     name: string;
     type: string;
-    author:string;
+    author: string;
     publishDate: string;
   };
 
@@ -18,7 +19,7 @@ function Wiki() {
     name: string;
     author: string;
     publishDate: string
-  }
+  };
 
   const [files, setFiles] = useState<WikiFile[]>([]);
   const [folders, setFolders] = useState<string[]>([]);
@@ -40,7 +41,7 @@ function Wiki() {
 
   const wikiApiUrl =
     "https://api.github.com/repos/maxmulder03/BlueNucleusWiki/git/trees/main?recursive=1";
-  
+
   const articleMetaDataUrl = 
     "https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main/articles.json";
 
@@ -55,33 +56,39 @@ function Wiki() {
     return folderColors[folders.indexOf(foldername)];
   };
 
+  useEffect(() => {
+    document.body.classList.add(styles.wikipages);
+
+    return () => {
+      document.body.classList.remove(styles.wikipages);
+    };
+  }, []);
+
   // Fetches & formats wiki file metadata from Github
   useEffect(() => {
     const fetchWikis = async () => {
       try {
         const [response, metadataReponse] = await Promise.all([
           fetch(wikiApiUrl),
-          fetch(articleMetaDataUrl)
+          fetch(articleMetaDataUrl),
         ]);
 
         const repoTree = await response.json();
 
-        let articlesData = []
+        let articlesData = [];
         try {
           articlesData = await metadataReponse.json()
-        }
-        catch {
+        } catch {
           console.warn("No article metadata, proceeding without")
         }
 
         if (!repoTree || !repoTree.tree) return;
-        
+
         // Ignores root directory files
         const filteredTree = repoTree.tree.filter(
           (item: GithubResponseItem) =>
             item.path.includes("/") || item.type === "tree",
         );
-        
 
         filteredTree.forEach((item: GithubResponseItem) => {
           if (!item.type || !item.path) return;
@@ -89,9 +96,9 @@ function Wiki() {
             const metadata = item.path.split("/");
             const fileName = metadata.pop()?.split(".")[0];
             const folderName = metadata.pop();
-            const articleData = articlesData.find((article: Article)  => article.name === fileName)
-
-
+            const articleData = articlesData.find(
+              (article: Article) => article.name === fileName,
+            );
 
             if (fileName && folderName) {
               // TODO: Rework deduplication logic, this isn't great
@@ -102,7 +109,7 @@ function Wiki() {
                     name: fileName,
                     type: folderName,
                     author: articleData ? articleData.author : "---",
-                    publishDate: articleData ? articleData.publishDate : "---"
+                    publishDate: articleData ? articleData.publishDate : "---",
                   },
                 ].filter(
                   (f, i, arr) => arr.findIndex((x) => x.name === f.name) === i,
