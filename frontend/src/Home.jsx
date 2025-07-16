@@ -23,7 +23,7 @@ function Home() {
           text="Create Account"
           idx="five"
         />
-        <NavButton location="/tmp" text="Admin Dashboard" idx="six" />
+        <NavButton location="/admin-portal" text="Admin Dashboard" idx="six" />
         <NavButton location="/directory" text="Directory" idx="seven" />
       </div>
     </>
