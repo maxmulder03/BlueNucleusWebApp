@@ -18,7 +18,7 @@ function Wiki() {
   type Article = {
     name: string;
     author: string;
-    publishDate: string
+    publishDate: string;
   };
 
   const [files, setFiles] = useState<WikiFile[]>([]);
@@ -42,7 +42,7 @@ function Wiki() {
   const wikiApiUrl =
     "https://api.github.com/repos/maxmulder03/BlueNucleusWiki/git/trees/main?recursive=1";
 
-  const articleMetaDataUrl = 
+  const articleMetaDataUrl =
     "https://raw.githubusercontent.com/maxmulder03/BlueNucleusWiki/main/articles.json";
 
   const formattedName = (name: string) => {
@@ -77,9 +77,9 @@ function Wiki() {
 
         let articlesData = [];
         try {
-          articlesData = await metadataReponse.json()
+          articlesData = await metadataReponse.json();
         } catch {
-          console.warn("No article metadata, proceeding without")
+          console.warn("No article metadata, proceeding without");
         }
 
         if (!repoTree || !repoTree.tree) return;
@@ -196,9 +196,7 @@ function Wiki() {
                 key={idx}
                 className="m-0 pt-3 pb-3 p-1 list-none grid grid-cols-[1fr_3fr_1fr_1fr] border-b-[0.5px] items-center self-start text-left"
               >
-                <div className="col-start-1">
-                  {item.publishDate}
-                </div>
+                <div className="col-start-1">{item.publishDate}</div>
 
                 <Link
                   to={`/wikis/${item.type.toLowerCase()}/${item.name}`}
