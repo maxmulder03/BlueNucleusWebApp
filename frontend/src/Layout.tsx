@@ -78,11 +78,9 @@ function Header() {
 
 export default function Layout() {
   return (
-    <div className="flex flex-col h-screen min-h-0 mx-auto w-[95%]">
+    <div >
       <Header />
-      <main className="flex-1 min-h-0 overflow-hidden">
-        <Outlet />
-      </main>
+      <Outlet />
     </div>
   );
 }
