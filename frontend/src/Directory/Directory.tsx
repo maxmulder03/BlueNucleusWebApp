@@ -39,7 +39,7 @@ function Directory() {
     {
       fullName: "Tara Barnett",
       email: "barntara@mail.gvsu.edu",
-      githubUsername: "",
+      githubUsername: "taralynn00",
       employeeType: "Undergraduate",
       activeEmployee: true,
     },
@@ -131,6 +131,7 @@ function Directory() {
     }
     return;
   };
+
 
   return (
     <>

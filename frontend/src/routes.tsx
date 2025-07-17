@@ -27,6 +27,8 @@ export const routes = [
       },
       { path: "admin-portal", element: <AdminPortal /> },
       { path: "user-profile", element: <ProfilePage /> },
+      
+      { path: "directory/:email", element: <ProfilePage /> }, /*This is the route for user profiles in the directory */
     ],
   },
 ];
