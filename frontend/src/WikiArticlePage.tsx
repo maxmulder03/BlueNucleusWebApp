@@ -97,7 +97,7 @@ function WikiArticlePage() {
     <>
       {/* Wiki Article Grid*/}
       <div className="relative h-full w-full overflow-hidden resize-none">
-        <div className="container grid grid-cols-12 auto-rows-fr resize-none min-h-0 pb-2 overflow-hidden">
+        <div className="grid grid-cols-12 auto-rows-fr resize-none min-h-0 pb-2 overflow-hidden">
           {/* Table of Contents */}
           <div
             box-="square contain:!top"
