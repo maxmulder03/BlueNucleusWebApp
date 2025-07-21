@@ -34,7 +34,7 @@ function SignIn() {
 
   return (
     <div className="flex flex-col justify-center items-center h-full translate-y-[-10%]">
-      <div box-="round contain:!top" className="pr-10 pb-10 pb-4">
+      <div box-="round contain:!top" className="pr-10 pb-10 pb-4 pt-6">
         <h1 is-="badge" variant-="background0">
           {" "}
           sign-in
