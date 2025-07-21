@@ -1,6 +1,7 @@
 import { auth, db } from "./FirebaseApp";
 import { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import styles from "./disable.module.css";
 
 function DashboardItem({ title, text }) {
   return (
@@ -40,6 +41,14 @@ function EmployeeDashboard() {
     };
     fetchProfileInfo();
   }, [user]);
+
+  useEffect(() => {
+    document.body.classList.add(styles.wikipages);
+
+    return () => {
+      document.body.classList.remove(styles.wikipages);
+    };
+  }, []);
 
   return (
     <div className="dashboard-container">

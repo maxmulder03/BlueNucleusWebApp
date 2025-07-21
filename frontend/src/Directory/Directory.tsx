@@ -75,7 +75,7 @@ function Directory() {
     {
       fullName: "Hoan Lam",
       email: "lamho@mail.gvsu.edu",
-      githubUsername: "HoanLam",
+      githubUsername: "clcik-click",
       employeeType: "Graduate",
       activeEmployee: true,
     },
