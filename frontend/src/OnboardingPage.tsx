@@ -66,7 +66,43 @@ function OnboardingPage() {
       title: "Reach out to Jonathan for Key card access",
       category: "General",
       completed: false,
+<<<<<<< HEAD
+<<<<<<< HEAD
+    },    
+=======
+    },   
+      {
+      title: "Complete intro to React Course",
+      category: "Technical Onboarding",
+      completed: false,
     },
+    {
+      title: "Take picture for team website",
+      category: "General",
+      completed: false,
+    },
+    {
+      title: "Create Personal Website",
+      description: "Create a directory to share files.",
+      category: "Technical Onboarding",
+      completed: false,
+    },
+    {
+      title: "Make a pull request to the BlueNucleusWebApp repo",
+      description:
+        "Pick an issue that's marked as 'good first issue', implement the solution, and submit a pull request.",
+      category: "Technical Onboarding",
+      completed: false,
+    },
+    {
+      title: "Reach out to Jonathan for Key card access",
+      category: "General",
+      completed: false,
+    },   
+>>>>>>> e53c272 (Disable scrolling on Wiki only)
+=======
+    },    
+>>>>>>> 71339a6 (Add placeholders for dashboard)
   ]);
 
   const onUpdate = useCallback(
