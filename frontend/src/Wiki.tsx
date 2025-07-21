@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import styles from "./disable.module.css";
 
 function Wiki() {
   type WikiFile = {
@@ -55,14 +54,6 @@ function Wiki() {
   const getBadgeColor = (foldername: string) => {
     return folderColors[folders.indexOf(foldername)];
   };
-
-  useEffect(() => {
-    document.body.classList.add(styles.wikipages);
-
-    return () => {
-      document.body.classList.remove(styles.wikipages);
-    };
-  }, []);
 
   // Fetches & formats wiki file metadata from Github
   useEffect(() => {

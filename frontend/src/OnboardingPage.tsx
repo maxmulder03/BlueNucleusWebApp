@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from "react";
-import styles from "./disable.module.css";
 
 interface Task {
   title: string;
@@ -20,14 +19,6 @@ function OnboardingItem({ task, setTotalCompleted }: OnboardingItemProps) {
     setTotalCompleted(completed);
     setCompleted(!completed);
   };
-
-  useEffect(() => {
-    document.body.classList.add(styles.wikipages);
-
-    return () => {
-      document.body.classList.remove(styles.wikipages);
-    };
-  }, []);
 
   return (
     <div
@@ -76,7 +67,6 @@ function OnboardingPage() {
       category: "General",
       completed: false,
     },
-    
   ]);
 
   const onUpdate = useCallback(

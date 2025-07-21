@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula as codeTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
-import styles from "./disable.module.css";
 
 interface Heading {
   type: string;
@@ -46,14 +45,6 @@ function WikiArticlePage() {
         return <h6 className="pl-13 pb-1 pr-2 truncate">{headingContent}</h6>;
     }
   };
-
-  useEffect(() => {
-    document.body.classList.add(styles.wikipages);
-
-    return () => {
-      document.body.classList.remove(styles.wikipages);
-    };
-  }, []);
 
   useEffect(() => {
     fetch(
