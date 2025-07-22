@@ -32,6 +32,13 @@ function Directory() {
     {
       fullName: "Hans Dulimarta",
       email: "dulimarh@gvsu.edu",
+      githubUsername: "dulimarta",
+      employeeType: "Admin",
+      activeEmployee: true,
+    },
+    {
+      fullName: "Brock Thane",
+      email: "thanebr@gvsu.edu",
       githubUsername: "",
       employeeType: "Admin",
       activeEmployee: true,
@@ -39,7 +46,7 @@ function Directory() {
     {
       fullName: "Tara Barnett",
       email: "barntara@mail.gvsu.edu",
-      githubUsername: "",
+      githubUsername: "taralynn00",
       employeeType: "Undergraduate",
       activeEmployee: true,
     },
@@ -74,7 +81,7 @@ function Directory() {
     {
       fullName: "Collin Brennan",
       email: "brenncol@mail.gvsu.edu",
-      githubUsername: "",
+      githubUsername: "collinb04",
       employeeType: "Undergraduate",
       activeEmployee: true,
     },
@@ -88,7 +95,7 @@ function Directory() {
     {
       fullName: "Lucy Roop",
       email: "rooplu@mail.gvsu.edu",
-      githubUsername: "",
+      githubUsername: "LRoop-Boop",
       employeeType: "Undergraduate",
       activeEmployee: true,
     },
@@ -97,6 +104,20 @@ function Directory() {
       email: "garrach@gvsu.edu",
       githubUsername: "",
       employeeType: "Graduate",
+      activeEmployee: false,
+    },
+    {
+      fullName: "Nathan Katzman",
+      email: "katzmann@mail.gvsu.edu",
+      githubUsername: "Katzmann835",
+      employeeType: "Admin",
+      activeEmployee: true,
+    },
+    {
+      fullName: "Rajvardhan Patil",
+      email: "",
+      githubUsername: "",
+      employeeType: "Admin",
       activeEmployee: true,
     },
   ];
@@ -134,33 +155,35 @@ function Directory() {
 
   return (
     <>
-      <h1 className="pb-3">Directory</h1>
+      <div className="pb-10">
+        <h1 className="pb-3">Directory</h1>
 
-      <div box-="round contain:!top" className="">
-        <div is-="badge" variant-="background0">
-          Actions
+        <div box-="round contain:!top" className="">
+          <div is-="badge" variant-="background0">
+            Actions
+          </div>
+
+          <div>
+            <button className="ml-3 mt-2 mb-2 h-[80%]" onClick={copyEmails}>
+              Copy All Emails
+            </button>
+
+            <button
+              variant-="background2"
+              className="ml-3 mt-2 mb-2 h-[80%]"
+              onClick={() => setListView(!listView)}
+            >
+              {listView ? "Toggle Card View" : "Toggle List View"}
+            </button>
+          </div>
         </div>
 
-        <div>
-          <button className="ml-3 mt-2 mb-2 h-[80%]" onClick={copyEmails}>
-            Copy All Emails
-          </button>
-
-          <button
-            variant-="background2"
-            className="ml-3 mt-2 mb-2 h-[80%]"
-            onClick={() => setListView(!listView)}
-          >
-            {listView ? "Toggle Card View" : "Toggle List View"}
-          </button>
-        </div>
+        {listView ? (
+          <DirectoryListView users={tmpUserData} />
+        ) : (
+          <DirectoryCardView users={tmpUserData} />
+        )}
       </div>
-
-      {listView ? (
-        <DirectoryListView users={tmpUserData} />
-      ) : (
-        <DirectoryCardView users={tmpUserData} />
-      )}
     </>
   );
 }
