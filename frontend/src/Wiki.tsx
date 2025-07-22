@@ -149,7 +149,7 @@ function Wiki() {
               <li key={idx} className="list-none m-0 pl-2 p-1">
                 <input
                   type="checkbox"
-                  className=" w-[10pt] h-[10pt]"
+                  className="w-[10pt] h-[10pt]"
                   checked={activeFilters.includes(folder)}
                   onChange={() => handleFilterChange(folder)}
                 />
