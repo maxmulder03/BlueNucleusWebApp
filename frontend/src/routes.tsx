@@ -3,7 +3,7 @@ import CreateAccountWrapper from "./CreateAccountWrapper";
 import SignIn from "./SignIn";
 import OnboardingList from "./OnboardingList";
 import OnboardingPage from "./OnboardingPage";
-import EmployeeDashboard from "./EmployeeDashboard";
+import Dashboard from "./Dashboard";
 import Wiki from "./Wiki";
 import Directory from "./Directory/Directory";
 import WikiArticlePage from "./WikiArticlePage";
@@ -19,7 +19,7 @@ export const routes = [
       { path: "sign-in", element: <SignIn /> },
       { path: "wiki", element: <Wiki /> },
       { path: "directory", element: <Directory /> },
-      { path: "dashboard", element: <EmployeeDashboard /> },
+      { path: "dashboard", element: <Dashboard /> },
       {
         path: "wikis/:wikiType/:wikiArticleName",
         element: <WikiArticlePage />,
