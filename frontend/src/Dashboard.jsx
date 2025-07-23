@@ -40,46 +40,58 @@ function StatusCard({ label, value, colorClass}){
 
 function Dashboard() {
   
-  const [stats, setStats] = useState(null);
+  const [statistics, setStatistic] = useState(null);
 
-  const randomData = () => {
+  const randomTrendData = () => {
     const days    = 30;
     const result  = [];
 
     for (let i = 0; i < days; i++) {
       const date = new Date();
+      // Last 30 days
       date.setDate(date.getDate() - (days - i - 1));
+      // 
       const dayStr = date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
       result.push({
-        day:    dayStr,
-        count:  Math.floor(Math.random() * 100),
+        day:    dayStr,                           // Jul - 4
+        count:  Math.floor(Math.random() * 10),   // 5
       });
     }
     return result;
   };
 
+  // initializes statistics
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStats({
+    // Updates statistics every 5s
+    // const interval = setInterval(() => {
+      setStatistic({
         success:    Math.floor(Math.random() * 500),
         fail:       Math.floor(Math.random() * 50),
         cpu:        Math.floor(Math.random() * 100),
-        running:    Math.random() > 0.1,
+        running:    Math.random() > 0.1,                // running 90% of the time
         credits:    Math.floor(Math.random() * 50),
-        trendData:  randomData(),
+        trendData:  randomTrendData(),
       });
-    }, 5000);
-    return () => clearInterval(interval);
+    // }, 5000);
+    // return () => clearInterval(interval);
   }, []);
 
-  if (!stats) return <h1>Loading stats...</h1>;
+  // Once setInterval is invoked, it begins its timer, 
+  // and the first execution of the provided function occurs after the initial delay, 
+  // regardless of whether a re-render has completed.
 
-  const trendChartData = {
-    labels: stats.trendData.map((d) => d.day),
+  // statistics is null at first
+  if (!statistics) return <h1 className="text-center">Loading statistics...</h1>;
+
+
+  const chartTrendData = {
+    // x
+    labels: statistics.trendData.map((d) => d.day),
+    // y
     datasets: [
       {
         label:            "Requests",
-        data:             stats.trendData.map((d) => d.count),
+        data:             statistics.trendData.map((d) => d.count),
         borderColor:      "rgba(75, 192, 192, 1)",
         backgroundColor:  "rgba(75, 192, 192, 0.2)",
         fill:             true,
@@ -108,8 +120,8 @@ function Dashboard() {
     scales: {
       x: {
         ticks: {
-          autoSkip: false,     // Show all labels (optional — disable for long lists)
-          maxRotation: 45,     // Rotate to vertical
+          autoSkip: false,     
+          maxRotation: 45,     
           minRotation: 0,
           font: {
             family: "'Roboto Mono', monospace",
@@ -147,55 +159,49 @@ function Dashboard() {
 
   return (
     <div>
-      <h1> stats </h1>
+      <h1 className="text-center"> statistics </h1>
 
+      {/* trend */}
       <div
-        box-="square"
-        className="w-full h-[500px]"
+        box-      ="square"
+        className ="w-full h-[500px]"
       >
         <Line
-          data    ={trendChartData}
+          data    ={chartTrendData}
           options ={chartOptions("Requests Per Day", "Day", "Requests")}
         />
       </div>
 
-      {/* Status Cards Grid */}
+      {/* statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         <StatusCard
-          label="Successful Requests"
-          value={stats.success}
-          colorClass="text-green-600"
+          label       ="Successful Requests"
+          value       ={statistics.success}
+          colorClass  ="text-slate-200"
         />
         <StatusCard
-          label="Failed Requests"
-          value={stats.fail}
-          colorClass="text-red-500"
+          label       ="Failed Requests"
+          value       ={statistics.fail}
+          colorClass  ="text-slate-200"
         />
         <StatusCard
-          label="CPU Utilization (%)"
-          value={`${stats.cpu}`}
-          colorClass={
-            stats.cpu > 80
-              ? "text-red-600"
-              : stats.cpu > 50
-              ? "text-yellow-500"
-              : "text-green-600"
-          }
+          label       ="CPU Utilization (%)"
+          value       ={`${statistics.cpu}`}
+          colorClass  ="text-slate-200"
         />
         <StatusCard
-          label="Host Running"
-          value={stats.running ? "Running" : "Down"}
-          colorClass={stats.running ? "text-green-600" : "text-red-500"}
+          label       ="Host Running"
+          value       ={statistics.running ? "Running" : "Down"}
+          colorClass  ="text-slate-200"
         />
         <StatusCard
-          label="OpenAI Credits Left"
-          value={`${stats.credits}`}
-          colorClass="text-green-600"
+          label       ="OpenAI Credits Left"
+          value       ={`${statistics.credits}`}
+          colorClass  ="text-slate-200"
         />
       </div>
 
-    </div>
-      
+    </div> 
   );
 }
 
