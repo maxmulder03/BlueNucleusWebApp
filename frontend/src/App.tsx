@@ -21,7 +21,7 @@ function App() {
     <div className="flex flex-col h-screen min-h-0 mx-auto my-2 w-[95%]">
       <QueryClientProvider client={queryClient}>
         <div className="flex justify-between items-center px-9 text-xs font-extrabold text-[var(--foreground2)] mr-10">
-          <pre className="text-start pl-9 text-xs font-extrabold text-[var(--foreground2)]">
+          <pre className="text-start pl-9 text-xs font-extrabold text-[var(--foreground2)] bg-[var(--background0)]">
             {String.raw`
 __________.__                   _______                .__                       
 \______   \  |  __ __   ____    \      \  __ __   ____ |  |   ____  __ __  ______
@@ -30,16 +30,20 @@ __________.__                   _______                .__
  |________/____/____/  \____>  \___|_____/____/  \_____>____/\____>_____//______>
           `}
           </pre>
-          <pre className="m-0 text-sm text-end">
-            <pre>© 2025 Blue Nucleus</pre>
-            <pre>
+          <pre className="m-0 text-sm text-end bg-[var(--background0)]">
+            <pre className="bg-[var(--background0)] text-[var(--foreground2)]">
+              © 2025 Blue Nucleus
+            </pre>
+            <pre className="bg-[var(--background0)] text-[var(--foreground2)]">
               {user?.email
                 ? isAdmin
                   ? user.email + " (Admin)"
                   : ""
                 : "NO LOGGED IN USER"}
             </pre>
-            <pre>{new Date().toLocaleString()}</pre>
+            <pre className="bg-[var(--background0)] text-[var(--foreground2)]">
+              {new Date().toLocaleString()}
+            </pre>
           </pre>
         </div>
         <RouterProvider router={router} />

@@ -62,9 +62,9 @@ function CreateAccount({ onAccountCreation }) {
 
   return (
     <>
-      <div className="overflow-y-hidden pt-8">
+      <div className="overflow-y-hidden">
         <h1 className="MyTitle">Create An Account</h1>
-        <div className="flex flex-col justify-center items-center h-full translate-y-[-10%]">
+        <div className="flex flex-col justify-center items-center h-full translate-y-[-10%] pt-40">
           <div box-="round" shear-="top" className="pr-10 pb-10 pb-4">
             <h1 is-="badge" variant-="background0">
               {" "}
