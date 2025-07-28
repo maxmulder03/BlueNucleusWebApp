@@ -21,3 +21,6 @@ header {
     --box-border-color: var(--foreground2);
   }
 }
+h1::before {
+  content: "# ";
+}
