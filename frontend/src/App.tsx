@@ -31,17 +31,17 @@ __________.__                   _______                .__
           `}
           </pre>
           <pre className="m-0 text-sm text-end bg-[var(--background0)]">
-            <pre className="bg-[var(--background0)] text-[var(--foreground2)]">
+            <pre className="bg-[var(--background0)] text-sm text-[var(--foreground2)]">
               © 2025 Blue Nucleus
             </pre>
-            <pre className="bg-[var(--background0)] text-[var(--foreground2)]">
+            <pre className="bg-[var(--background0)] text-sm text-[var(--foreground2)]">
               {user?.email
                 ? isAdmin
                   ? user.email + " (Admin)"
                   : ""
                 : "NO LOGGED IN USER"}
             </pre>
-            <pre className="bg-[var(--background0)] text-[var(--foreground2)]">
+            <pre className="bg-[var(--background0)] text-sm text-[var(--foreground2)]">
               {new Date().toLocaleString()}
             </pre>
           </pre>

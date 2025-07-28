@@ -164,13 +164,16 @@ function Directory() {
           </div>
 
           <div>
-            <button className="ml-3 mt-2 mb-2 h-[80%]" onClick={copyEmails}>
+            <button
+              className="ml-3 mt-2 mb-2 h-[80%] bg-[var(--foreground0)] active:bg-[var(--background0)]"
+              onClick={copyEmails}
+            >
               Copy All Emails
             </button>
 
             <button
               variant-="background2"
-              className="ml-3 mt-2 mb-2 h-[80%]"
+              className="ml-3 mt-2 mb-2 h-[80%] bg-[var(--background2)] active:bg-[var(--foreground0)] active:text-[var(--background2)]"
               onClick={() => setListView(!listView)}
             >
               {listView ? "Toggle Card View" : "Toggle List View"}
