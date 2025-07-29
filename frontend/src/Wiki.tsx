@@ -162,7 +162,7 @@ function Wiki() {
               is-="button"
               variant-="background3"
               box-="round"
-              className="active:text-white active:border-[var(--foreground0)]"
+              className="active:text-white"
               onClick={() => setActiveFilters([])}
             >
               Clear Filters
