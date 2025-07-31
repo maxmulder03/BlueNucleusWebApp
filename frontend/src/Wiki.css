@@ -1,0 +1,10 @@
+@layer base, utils, components;
+
+@import "@webtui/css";
+@import "@webtui/theme-catppuccin";
+@import "tailwindcss";
+
+div[is-="separator"] {
+  --border-bottom-width: 0.5px;
+  --separator-width: 0.5px;
+}
