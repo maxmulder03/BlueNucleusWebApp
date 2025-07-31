@@ -24,7 +24,7 @@ header {
 h1::before {
   content: "# ";
 }
-div[is-="seperator"]{
-  --seperator-width: 2ch;
-  --seperator-color: var(--background2);
+div[is-="separator"]{
+  --separator-width: 0.2ch;
+  --separator-color: var(--background2);
 }
