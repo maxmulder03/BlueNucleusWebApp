@@ -7,4 +7,5 @@
 div[is-="separator"] {
   --border-bottom-width: 0.5px;
   --separator-width: 0.5px;
+  --separator-color: var(--foreground0);
 }
