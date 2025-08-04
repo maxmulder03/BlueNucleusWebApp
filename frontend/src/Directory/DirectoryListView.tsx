@@ -1,5 +1,6 @@
 import { User, typeToBadgeClass } from "../types/User";
 import { getGridTemplateColumns } from "../utils/utils";
+import "./Direct.css";
 
 interface DirectoryListViewProps {
   users: User[];
