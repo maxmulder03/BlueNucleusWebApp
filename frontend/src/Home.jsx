@@ -23,6 +23,7 @@ function Home() {
           text="Create Account"
           idx="five"
         />
+        <NavButton location="/user-profile" text="Profile" idx="eight" />
         <NavButton location="/tmp" text="Admin Dashboard" idx="six" />
         <NavButton location="/directory" text="Directory" idx="seven" />
       </div>

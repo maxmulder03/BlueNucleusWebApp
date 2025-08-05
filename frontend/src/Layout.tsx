@@ -65,6 +65,15 @@ function Header() {
       </NavLink>
 
       <NavLink
+        to="/user-profile"
+        is-="badge"
+        variant-="background1"
+        className="ml-2 pt-2 pb-2 items-center"
+      >
+        Profile
+      </NavLink>
+
+      <NavLink
         to="/admin-portal"
         is-="badge"
         variant-={isAdmin ? "yellow" : "red"}
@@ -72,6 +81,7 @@ function Header() {
       >
         Admin Portal
       </NavLink>
+
     </header>
   );
 }

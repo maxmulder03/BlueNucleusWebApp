@@ -1,0 +1,6 @@
+.profile-settings {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  column-gap: 15px;
+  }

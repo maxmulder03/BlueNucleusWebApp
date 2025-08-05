@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { User, typeToBadgeClass } from "../types/User";
+import { useNavigate } from "react-router-dom";
 
 interface DirectoryCardViewProps {
   users: User[];
 }
 
 function DirectoryCardView({ users }: DirectoryCardViewProps) {
+  const navigate = useNavigate();
+
+  const handleClick = (user: User) => {
+    navigate(`/directory/${user.email}`);
+  };
+  
   return (
     <div className="grid grid-cols-12 grid-rows-4 h-full pt-4">
       {users.map((user, idx) => (
@@ -27,7 +34,7 @@ function DirectoryCardView({ users }: DirectoryCardViewProps) {
             </span>
           </div>
 
-          <div className="grid grid-cols-3 h-full items-center justify-items-center translate-y-[-18px]">
+          <div className="grid grid-cols-3 h-full items-center justify-items-center translate-y-[-18px] max-h-[100%]">
             <div className="col-start-1 col-span-1 h-[60%] w-[65%] bg-gray-700 rounded-sm"></div>
             <div className="grid grid-col-1 gap-1 col-start-2 col-span-2 p-4">
               <div>
@@ -66,6 +73,19 @@ function DirectoryCardView({ users }: DirectoryCardViewProps) {
                 {" "}
                 {user.employeeType}
               </div>
+
+              <span 
+                is-="badge" 
+                variant-="background0"
+              >
+                <div>
+                  <button
+                    className="ml-3 mt-2 mb-2 h-[80%]" 
+                    onClick={() => handleClick(user)}>View Profile
+                  </button>
+                </div>
+              </span>
+
             </div>
           </div>
         </div>

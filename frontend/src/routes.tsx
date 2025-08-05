@@ -9,6 +9,7 @@ import Directory from "./Directory/Directory";
 import WikiArticlePage from "./WikiArticlePage";
 import AdminPortal from "./admin/AdminPortal";
 import Layout from "./Layout";
+import ProfilePage from "./ProfilePage"
 export const routes = [
   {
     element: <Layout />, // header lives here
@@ -25,6 +26,9 @@ export const routes = [
         element: <WikiArticlePage />,
       },
       { path: "admin-portal", element: <AdminPortal /> },
+      { path: "user-profile", element: <ProfilePage /> },
+      
+      { path: "directory/:email", element: <ProfilePage /> }, /*This is the route for user profiles in the directory */
     ],
   },
 ];

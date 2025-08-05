@@ -3,11 +3,8 @@ import DirectoryCardView from "./DirectoryCardView";
 import DirectoryListView from "./DirectoryListView";
 import { User } from "../types/User";
 
-function Directory() {
-  const [users, setUsers] = useState([]);
-  const [listView, setListView] = useState(false);
-
-  const tmpUserData: User[] = [
+// moved outside of the function so it can be used in other files
+export const tmpUserData: User[] = [
     {
       fullName: "Max Mulder",
       email: "maxmulder03@gmail.com",
@@ -39,7 +36,7 @@ function Directory() {
     {
       fullName: "Tara Barnett",
       email: "barntara@mail.gvsu.edu",
-      githubUsername: "",
+      githubUsername: "taralynn00",
       employeeType: "Undergraduate",
       activeEmployee: true,
     },
@@ -101,6 +98,10 @@ function Directory() {
     },
   ];
 
+function Directory() {
+  const [users, setUsers] = useState([]);
+  const [listView, setListView] = useState(false);
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -131,6 +132,7 @@ function Directory() {
     }
     return;
   };
+
 
   return (
     <>
