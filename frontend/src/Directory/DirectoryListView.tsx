@@ -1,5 +1,6 @@
 import { User, typeToBadgeClass } from "../types/User";
 import { getGridTemplateColumns } from "../utils/utils";
+import "./Direct.css";
 
 interface DirectoryListViewProps {
   users: User[];
@@ -39,7 +40,7 @@ function DirectoryListView({ users }: DirectoryListViewProps) {
           >
             {user.employeeType}
           </div>
-          <div> {user.activeEmployee} </div>
+          <div> {user.activeEmployee ? "Active" : "Inactive"} </div>
         </div>
       ))}
     </div>

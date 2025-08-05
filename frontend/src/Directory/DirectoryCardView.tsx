@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 import { User, typeToBadgeClass } from "../types/User";
 
 interface DirectoryCardViewProps {
@@ -10,7 +10,8 @@ function DirectoryCardView({ users }: DirectoryCardViewProps) {
     <div className="grid grid-cols-12 grid-rows-4 h-full pt-4">
       {users.map((user, idx) => (
         <div
-          box-="round contain:none"
+          box-="round"
+          shear-="top"
           className={`col-start-${idx * 4 + 1} col-span-4 h-full`}
           key={user.fullName}
         >
