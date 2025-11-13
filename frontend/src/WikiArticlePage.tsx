@@ -137,6 +137,9 @@ function WikiArticlePage() {
                   ul: ({ ...props }) => {
                     return <ul className="pb-[2ch]" {...props} />;
                   },
+                  ol: ({ ...props }) => {
+                    return <ol className="list-decimal pb-[2ch]" {...props} />;
+                  },
                   code(props) {
                     const { children, className, ...rest } = props;
                     const match = /language-(\w+)/.exec(className || "");
