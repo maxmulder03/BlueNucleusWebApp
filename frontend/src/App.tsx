@@ -18,7 +18,7 @@ function App() {
   const { user, isAdmin } = useAuth();
 
   return (
-    <div className="flex flex-col h-screen min-h-0 mx-auto my-2 w-[95%]">
+    <div className="flex flex-col h-screen min-h-0 mx-auto w-[95%]">
       <QueryClientProvider client={queryClient}>
         <div className="flex justify-between items-center px-9 text-xs font-extrabold text-[var(--foreground2)] mr-10">
           <pre className="text-start pl-9 text-xs font-extrabold text-[var(--foreground2)]">
