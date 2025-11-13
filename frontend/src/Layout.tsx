@@ -80,7 +80,7 @@ export default function Layout() {
   return (
     <div className="flex flex-col h-screen min-h-0 mx-auto w-[95%]">
       <Header />
-      <main className="flex-1 min-h-0 overflow-auto">
+      <main className="flex-1 min-h-0 overflow-hidden">
         <Outlet />
       </main>
     </div>
